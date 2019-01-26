@@ -16,6 +16,10 @@ public class GameController : MonoBehaviour
 	public int Tools = 0;
     public int Weapons = 0;
     public int FoodPerPerson = 2;
+    public int StarveHealthDecrease = 8;
+    public int StarveRelationshipDecrease = 5;
+    public int RestHealthIncrease = 1;
+    public int RestRelationshipIncrease = 1;
 	[Range(0, Constants.MAX_VALUE)]
 	public int TeamMorale = 50;
 
@@ -87,9 +91,9 @@ public class GameController : MonoBehaviour
             List<Character> toBeRemoved = new List<Character>();
             foreach (Character character in Roster)
             {
-				if (!character.ChangeHealth(foodNeeded - Food))
+				if (!character.ChangeHealth(-StarveHealthDecrease * ((foodNeeded-Food)/foodNeeded)) ||
+                    !character.ChangeRelationship(-StarveRelationshipDecrease * ((foodNeeded-Food)/foodNeeded)))
 					toBeRemoved.Add(character);
-
 			}
 			foreach (Character character in toBeRemoved)
 			{
@@ -106,7 +110,10 @@ public class GameController : MonoBehaviour
 			{
 				character.AssignedAction.Execute(character);
 				character.AssignedAction = null;
-			}
+			} else {
+                character.ChangeHealth(RestHealthIncrease);
+                character.ChangeRelationship(RestRelationshipIncrease);
+            }
 		}
 		if (AvailableEvents.Count > 0)
 			dialogBoxController.ShowBox(AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)]);

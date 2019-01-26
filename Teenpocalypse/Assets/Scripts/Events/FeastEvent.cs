@@ -10,7 +10,7 @@ public class FeastEvent : Event
         switch (index)
         {
             case 0:
-                GameController.Instance.Food = Mathf.Max(0, GameController.Instance.Food - 30);
+                GameController.Instance.Food = Mathf.Max(0, GameController.Instance.Food - GameController.Instance.Roster.Count*GameController.Instance.FoodPerPerson);
                 GameController.Instance.TeamMorale = Mathf.Min(Constants.MAX_VALUE, GameController.Instance.TeamMorale + 10);
                 break;
 
