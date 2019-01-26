@@ -6,8 +6,8 @@ public abstract class Event : ScriptableObject
 {
     public string Name;
     [TextArea(4, 20)] public string Description;
-    [Range(0, 10)] public int minWeek;
-    public List<string> choices;
+    [Range(0, 10)] public int MinWeek;
+    public List<string> Choices;
 
     public abstract void Execute(int choice);
 }
