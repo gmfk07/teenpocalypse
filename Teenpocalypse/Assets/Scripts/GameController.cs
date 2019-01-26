@@ -70,6 +70,7 @@ public class GameController : MonoBehaviour
 			AddCharacter(character);
 		}
 		LoadActions();
+        LoadEvents();
 		m_HitObjects = new List<RaycastResult>();
 	}
 

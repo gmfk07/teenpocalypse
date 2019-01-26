@@ -6,7 +6,7 @@ public class DialogBoxController : MonoBehaviour
 {
     private int width = 200;
     private int height = 225;
-    private bool show = true;
+    private bool show = false;
     private Rect windowRect;
     public Event currentEvent;
 
