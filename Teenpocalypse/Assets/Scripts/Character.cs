@@ -42,7 +42,7 @@ public class Character : ScriptableObject
     //Returns true if character is still present, false otherwise
     public bool ChangeRelationship(int delta)
     {
-        Relationship -= delta;
+        Relationship = delta;
         if (Relationship <= 0)
             return false;
         return true;

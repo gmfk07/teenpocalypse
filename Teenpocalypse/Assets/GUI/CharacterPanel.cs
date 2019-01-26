@@ -24,6 +24,7 @@ public class CharacterPanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        LoadCharacterData();
 		if (character.AssignedAction != null)
 			characterActionText.text = character.AssignedAction.Name;
 		else
