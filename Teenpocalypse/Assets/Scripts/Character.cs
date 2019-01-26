@@ -33,8 +33,9 @@ public class Character : ScriptableObject
     //Returns true if character is still alive, false otherwise
     public bool ChangeHealth(int delta)
     {
-        Health -= delta;
-        if (Health <= 0)
+        Health += delta;
+        Mathf.Clamp(Health, 0, MaxHealth);
+        if (Health == 0)
             return false;
         return true;
     }
@@ -42,8 +43,9 @@ public class Character : ScriptableObject
     //Returns true if character is still present, false otherwise
     public bool ChangeRelationship(int delta)
     {
-        Relationship = delta;
-        if (Relationship <= 0)
+        Relationship += delta;
+        Mathf.Clamp(Health, 0, Constants.MAX_VALUE);
+        if (Relationship == 0)
             return false;
         return true;
     }
