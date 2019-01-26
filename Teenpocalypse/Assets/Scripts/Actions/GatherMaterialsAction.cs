@@ -2,10 +2,10 @@
 using System.Collections;
 
 [CreateAssetMenu(menuName = "Actions/GatherMaterialsAction")]
-public class GatherMaterials : Action
+public class GatherMaterialsAction : Action
 {
 
-	public GatherMaterials()
+	public GatherMaterialsAction()
 	{
 	}
 
