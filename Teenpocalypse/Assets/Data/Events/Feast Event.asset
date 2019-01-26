@@ -12,12 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0227af32564b1a247b1e2363e5bbb529, type: 3}
   m_Name: Feast Event
   m_EditorClassIdentifier: 
-  Name: There's a Feast
-  Description: Do you want to like, throw a feast? It's fine if you don't my main
-    man, but not everyone might like that idea if you CATCH my DRIFT my MAIN BROSEPH
-    my BROSEIDON LORD OF THE BROCEAN if you're picking up what i'm layin down my main
-    man
-  MinWeek: 0
-  Choices:
-  - Let's dig in!
-  - No.
+  Name: 
+  Description: 
+  minWeek: 0
+  choices: []
