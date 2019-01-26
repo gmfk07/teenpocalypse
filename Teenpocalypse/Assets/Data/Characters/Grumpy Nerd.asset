@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d75bafb142c66484d88b92b16e918924, type: 3}
+  m_Name: Grumpy Nerd
+  m_EditorClassIdentifier: 
+  Name: Bye Kyle
+  Bio: Redefines the meaning of Bye Bye
+  MaxHealth: 50
+  InitialRelationship: 45
+  Health: 90
+  Relationship: 35
+  Icon: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
+  AssignedAction: {fileID: 0}

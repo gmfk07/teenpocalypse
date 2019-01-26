@@ -10,6 +10,8 @@ public class CharacterPanel : MonoBehaviour
 	public Character character;
 	public TextMeshProUGUI characterName;
 	public TextMeshProUGUI characterActionText;
+	public TextMeshProUGUI characterHealthText;
+	public TextMeshProUGUI characterRelationshipText;
 	public RawImage characterImageUI;
 	public Texture characterPicture;
 
@@ -33,5 +35,7 @@ public class CharacterPanel : MonoBehaviour
 		characterName.text = character.Name;
 		characterPicture = character.Icon;
 		characterImageUI.texture = characterPicture;
+		characterHealthText.text = character.Health.ToString();
+		characterRelationshipText.text = character.Relationship.ToString();
 	}
 }

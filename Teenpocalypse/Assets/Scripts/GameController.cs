@@ -14,8 +14,8 @@ public class GameController : MonoBehaviour
 	public int Supplies = 10;
 	public int Food = 10;
 	public int Tools = 0;
-  public int Weapons = 0;
-  public int FoodPerPerson = 2;
+	public int Weapons = 0;
+	public int FoodPerPerson = 2;
 	[Range(0, Constants.MAX_VALUE)]
 	public int TeamMorale = 50;
 
@@ -96,8 +96,8 @@ public class GameController : MonoBehaviour
 				character.AssignedAction = null;
 			}
 		}
-
-        dialogBoxController.ShowBox(AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)]);
+		if (AvailableEvents.Count > 0)
+			dialogBoxController.ShowBox(AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)]);
 	}
 
 	#region Incrementing and Modifying
