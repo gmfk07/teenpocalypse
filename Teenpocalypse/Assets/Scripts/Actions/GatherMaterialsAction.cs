@@ -11,6 +11,6 @@ public class GatherMaterialsAction : Action
 
 	public override void Execute(Character actionTaker)
 	{
-		GameController.Instance.Wood += 10;
+		GameController.Instance.Supplies += (int) Mathf.Round(10 * actionTaker.WorkMultiplier);
 	}
 }
