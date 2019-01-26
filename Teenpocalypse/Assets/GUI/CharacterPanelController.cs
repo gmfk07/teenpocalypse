@@ -13,7 +13,10 @@ public class CharacterPanelController : MonoBehaviour
     void Start()
     {
 		GameController.Instance.Event_OnWeekStart += OnWeekStart;
+		GameController.Instance.Event_OnCharacterRemoved += OnCharacterChanged;
+		GameController.Instance.Event_OnCharacterAdded += OnCharacterChanged;
 
+		characterPanels = new List<CharacterPanel>();
 		CreateCharacterPanels();
     }
 
@@ -29,15 +32,32 @@ public class CharacterPanelController : MonoBehaviour
 			CharacterPanel characterPanel = panel.GetComponent<CharacterPanel>();
 			characterPanel.character = character;
 			characterPanel.LoadCharacterData();
+			characterPanels.Add(characterPanel);
 			++i;
 		}
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	void DeleteCharacterPanels()
+	{
+		if (characterPanels == null || characterPanels.Count == 0)
+			return;
+		for (int i = characterPanels.Count - 1; i >= 0; --i)
+		{
+			CharacterPanel panel = characterPanels[i];
+			DestroyImmediate(panel.gameObject);
+		}
+		characterPanels.Clear();
+	}
+
+	void ResetCharacterPanels()
+	{
+		DeleteCharacterPanels();
+		CreateCharacterPanels();
+	}
+	void OnCharacterChanged(Character c)
+	{
+		ResetCharacterPanels();
+	}
 
 	void OnWeekStart()
 	{

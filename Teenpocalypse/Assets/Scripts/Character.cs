@@ -34,8 +34,10 @@ public class Character : ScriptableObject
     public bool ChangeHealth(int delta)
     {
         Health -= delta;
-        if (Health <= 0)
-            return false;
+		if (Health <= 0)
+		{
+			return false;
+		}
         return true;
     }
 
