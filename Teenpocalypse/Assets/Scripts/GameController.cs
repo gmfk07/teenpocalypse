@@ -11,11 +11,11 @@ public class GameController : MonoBehaviour
 	public static GameController Instance = null;
 	// Data currently exposed for debugging purposes
 	public int Week = 1;
-	public int Wood = 10;
-	public int Stone = 0;
+	public int Supplies = 10;
 	public int Food = 10;
 	public int Tools = 0;
-    public int FoodPerPerson = 2;
+  public int Weapons = 0;
+  public int FoodPerPerson = 2;
 	[Range(0, Constants.MAX_VALUE)]
 	public int TeamMorale = 50;
 
