@@ -170,8 +170,7 @@ public class GameController : MonoBehaviour
 	{
 		character.Init();
 		Roster.Add(character);
-		if (Event_OnCharacterAdded != null)
-			Event_OnCharacterAdded(character);
+		Event_OnCharacterAdded?.Invoke(character);
 	}
 	public void RemoveCharacter(Character character)
 	{
@@ -227,6 +226,9 @@ public class GameController : MonoBehaviour
 
 	List<GameObject> ClickAndGetResults()
 	{
+		if (dialogBoxController.IsShowing)
+			return null;
+
 		var pointer = new PointerEventData(EventSystem.current);
 		pointer.position = Input.mousePosition;
 		EventSystem.current.RaycastAll(pointer, m_HitObjects);
