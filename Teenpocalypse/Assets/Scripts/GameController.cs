@@ -99,8 +99,8 @@ public class GameController : MonoBehaviour
 				character.AssignedAction = null;
 			}
 		}
-
-        dialogBoxController.ShowBox(AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)]);
+		if (AvailableEvents.Count > 0)
+			dialogBoxController.ShowBox(AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)]);
 	}
 
 	#region Incrementing and Modifying
