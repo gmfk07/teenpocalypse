@@ -11,6 +11,6 @@ public class GatherFoodAction : Action
 
 	public override void Execute(Character actionTaker)
 	{
-		GameController.Instance.Food += 10;
-	}
+		GameController.Instance.Food += (int)Mathf.Round(10 * actionTaker.WorkMultiplier);
+    }
 }

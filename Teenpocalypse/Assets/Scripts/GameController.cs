@@ -14,8 +14,8 @@ public class GameController : MonoBehaviour
 	public int Supplies = 10;
 	public int Food = 10;
 	public int Tools = 0;
-	public int Weapons = 0;
-	public int FoodPerPerson = 2;
+    public int Weapons = 0;
+    public int FoodPerPerson = 2;
 	[Range(0, Constants.MAX_VALUE)]
 	public int TeamMorale = 50;
 
@@ -70,6 +70,7 @@ public class GameController : MonoBehaviour
 			AddCharacter(character);
 		}
 		LoadActions();
+        LoadEvents();
 		m_HitObjects = new List<RaycastResult>();
 	}
 
@@ -79,10 +80,13 @@ public class GameController : MonoBehaviour
         int foodNeeded = FoodPerPerson * Roster.Count;
         if (foodNeeded >= Food)
         {
+            List<Character> newRoster = new List<Character>();
             foreach (Character character in Roster)
             {
-                character.Health -= foodNeeded - Food;
+                if (character.ChangeHealth(foodNeeded - Food))
+                    newRoster.Add(character);
             }
+            Roster = newRoster;
             Food = 0;
         } else {
             Food -= foodNeeded;
@@ -174,7 +178,15 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	private void OnMouseReleased()
+    //Returns true if morale test succeeds, false otherwise
+    public bool TestMorale(int successModifier)
+    {
+        if (UnityEngine.Random.Range(0, 100 - successModifier) <= TeamMorale)
+            return true;
+        return false;
+    }
+
+    private void OnMouseReleased()
 	{
 		List<GameObject> clickedOnObjects = ClickAndGetResults();
 

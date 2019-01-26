@@ -7,6 +7,7 @@ public class Character : ScriptableObject
 	public string Name = "Bill";
 	[TextArea(4, 20)]
 	public string Bio = "Bill likes pineapples";
+    public float WorkMultiplier = 1;
 	[Range(0, Constants.MAX_VALUE)] public int MaxHealth;
 	//[Range(0, Constants.MAX_VALUE)] public int MaxEnergy;
 	[Range(0, Constants.MAX_VALUE)] public int InitialRelationship;
@@ -28,4 +29,30 @@ public class Character : ScriptableObject
 		//Morale = InitialMorale;
 		AssignedAction = null;
 	}
+
+    //Returns true if character is still alive, false otherwise
+    public bool ChangeHealth(int delta)
+    {
+        Health -= delta;
+        if (Health <= 0)
+            return false;
+        return true;
+    }
+
+    //Returns true if character is still present, false otherwise
+    public bool ChangeRelationship(int delta)
+    {
+        Relationship -= delta;
+        if (Relationship <= 0)
+            return false;
+        return true;
+    }
+
+    //Returns true if relationship test succeeds, false otherwise
+    public bool TestRelationship(int successModifier)
+    {
+        if (Random.Range(0, 100 - successModifier) <= Relationship)
+            return true;
+        return false;
+    }
 }
