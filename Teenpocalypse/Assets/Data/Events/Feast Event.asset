@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0227af32564b1a247b1e2363e5bbb529, type: 3}
   m_Name: Feast Event
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  minWeek: 0
-  choices: []
+  Name: Feast
+  Description: Andrew fucking fucked my entire project, making me waste 20 minutes
+    of valuable time do i kill him
+  MinWeek: 0
+  Choices:
+  - Yes, let's feast!
+  - No, we must conserve fud

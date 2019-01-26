@@ -600,6 +600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 712266562}
   - component: {fileID: 712266561}
+  - component: {fileID: 712266563}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -630,7 +631,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 96623ae88c6f0cf4b8446d10759331f2, type: 2}
   - {fileID: 11400000, guid: 649caccf7eb2c254b8904613a71e1e25, type: 2}
   AvailableActions: []
-  AllEvents: []
+  AllEvents:
+  - {fileID: 11400000, guid: 855c13b344c80a849a8f4b3a63ab20e1, type: 2}
   AvailableEvents: []
   StartingRoster:
   - {fileID: 11400000, guid: 00207cd1054bc53469b1eda1013d7884, type: 2}
@@ -638,7 +640,7 @@ MonoBehaviour:
   Roster: []
   SelectedCharacter: {fileID: 0}
   SelectedAction: {fileID: 0}
-  dialogBoxController: {fileID: 0}
+  dialogBoxController: {fileID: 712266563}
 --- !u!4 &712266562
 Transform:
   m_ObjectHideFlags: 0
@@ -653,6 +655,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &712266563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712266560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702a36d184c29b643a276b2524b54a05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentEvent: {fileID: 0}
 --- !u!1 &991255183
 GameObject:
   m_ObjectHideFlags: 0
