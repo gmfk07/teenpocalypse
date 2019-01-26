@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System;
 
 public class GameController : MonoBehaviour
 {
@@ -24,6 +27,11 @@ public class GameController : MonoBehaviour
 	public delegate void OnWeekStart();
 	public OnWeekStart Event_OnWeekStart;
 
+	public Character SelectedCharacter;
+	public Action SelectedAction;
+
+	List<RaycastResult> m_HitObjects;
+
 	void Awake()
 	{
 		if (Instance == null)
@@ -32,6 +40,17 @@ public class GameController : MonoBehaviour
 			Destroy(gameObject);
 		DontDestroyOnLoad(gameObject);
 		InitGame();
+	}
+	private void Update()
+	{
+		if (Input.GetMouseButtonDown(0))
+		{
+			OnMouseClicked();
+		}
+		if (Input.GetMouseButtonUp(0))
+		{
+			OnMouseReleased();
+		}
 	}
 
 	//Initializes the game for each level.
@@ -45,11 +64,20 @@ public class GameController : MonoBehaviour
 			AddCharacter(character);
 		}
 		LoadActions();
+		m_HitObjects = new List<RaycastResult>();
 	}
 
 	// Activated on Button Press
 	public void NextWeek()
 	{
+		foreach (Character character in Roster)
+		{
+			if (character.AssignedAction != null)
+			{
+				character.AssignedAction.Execute(character);
+				character.AssignedAction = null;
+			}
+		}
 		IncrementWeek();
 	}
 
@@ -95,4 +123,69 @@ public class GameController : MonoBehaviour
 		Roster.Remove(character);
 	}
 	#endregion
+
+	void OnMouseClicked()
+	{
+		List<GameObject> clickedOnObjects = ClickAndGetResults();
+
+		CharacterPanel characterPanel = FindFirstOf<CharacterPanel>(clickedOnObjects);
+		if (characterPanel)
+		{
+			SelectedCharacter = characterPanel.character;
+		}
+		ActionPanel actionPanel = FindFirstOf<ActionPanel>(clickedOnObjects);
+		if (actionPanel)
+		{
+			SelectedAction = actionPanel.action;
+		}
+	}
+
+	private void OnMouseReleased()
+	{
+		List<GameObject> clickedOnObjects = ClickAndGetResults();
+
+		CharacterPanel characterPanel = FindFirstOf<CharacterPanel>(clickedOnObjects);
+		if (characterPanel)
+		{
+			if (SelectedAction)
+			{
+				characterPanel.character.AssignedAction = SelectedAction;
+			}
+		}
+		ActionPanel actionPanel = FindFirstOf<ActionPanel>(clickedOnObjects);
+		if (actionPanel)
+		{
+			
+		}
+
+		SelectedAction = null;
+		SelectedCharacter = null;
+	}
+
+	List<GameObject> ClickAndGetResults()
+	{
+		var pointer = new PointerEventData(EventSystem.current);
+		pointer.position = Input.mousePosition;
+		EventSystem.current.RaycastAll(pointer, m_HitObjects);
+
+		if (m_HitObjects.Count <= 0) return null;
+		List<GameObject> gameObjects = new List<GameObject>();
+		foreach (var item in m_HitObjects)
+		{
+			gameObjects.Add(item.gameObject);
+		}
+		return gameObjects;
+	}
+
+	T FindFirstOf<T>(List<GameObject> gameObjects)
+	{
+		if (gameObjects == null) return default(T);
+		foreach (GameObject go in gameObjects)
+		{
+			T component = go.GetComponent<T>();
+			if (component != null)
+				return component;
+		}
+		return default(T);
+	}
 }

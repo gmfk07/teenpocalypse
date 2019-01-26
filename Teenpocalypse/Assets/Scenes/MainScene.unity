@@ -701,6 +701,8 @@ MonoBehaviour:
   StartingRoster:
   - {fileID: 11400000, guid: 00207cd1054bc53469b1eda1013d7884, type: 2}
   Roster: []
+  SelectedCharacter: {fileID: 0}
+  SelectedAction: {fileID: 0}
 --- !u!4 &712266562
 Transform:
   m_ObjectHideFlags: 0
@@ -886,7 +888,7 @@ PrefabInstance:
     - target: {fileID: 2029448409445121237, guid: 65ec33c2db7e9ce49962e4f9deedc078,
         type: 3}
       propertyPath: m_Name
-      value: Character
+      value: CharacterPanel
       objectReference: {fileID: 0}
     - target: {fileID: 3592486817447748680, guid: 65ec33c2db7e9ce49962e4f9deedc078,
         type: 3}
@@ -999,6 +1001,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 34189310044578547, guid: 65ec33c2db7e9ce49962e4f9deedc078,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493958947837525312, guid: 65ec33c2db7e9ce49962e4f9deedc078,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3493958947837525312, guid: 65ec33c2db7e9ce49962e4f9deedc078,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1

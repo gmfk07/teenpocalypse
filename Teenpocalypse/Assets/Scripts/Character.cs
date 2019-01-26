@@ -16,6 +16,9 @@ public class Character : ScriptableObject
 	//[HideInInspector] public int Energy;
 	[HideInInspector] public int Relationship;
 	//[HideInInspector] public int Morale;
+
+	public Texture Icon;
+	[HideInInspector] public Action AssignedAction;
 	
 	public void Init()
 	{
@@ -23,5 +26,6 @@ public class Character : ScriptableObject
 		//Energy = MaxEnergy;
 		Relationship = InitialRelationship;
 		//Morale = InitialMorale;
+		AssignedAction = null;
 	}
 }
