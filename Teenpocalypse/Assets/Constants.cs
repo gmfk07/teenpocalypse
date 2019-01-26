@@ -5,4 +5,5 @@ using UnityEngine;
 public static class Constants
 {
     public const int STARTING_WOOD = 10;
+    public const int STARTING_FOOD = 100;
 }
