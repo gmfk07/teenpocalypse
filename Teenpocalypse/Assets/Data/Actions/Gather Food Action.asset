@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d36bca50cd1a5458f07da310006b30, type: 3}
   m_Name: Gather Food Action
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  ToolsNeeded: 0
+  Name: Gather Food
+  Description: Send someone to gather food
   MinWeek: 0
+  InitialSlots: 1
+  AssignedCharacters: []
+  Slots: 1

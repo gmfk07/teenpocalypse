@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class Constants
 {
-    public const int STARTING_WOOD = 10;
-    public const int STARTING_FOOD = 100;
+	// Max values for attributes such as health, energy, morale
+	public const int MAX_VALUE = 100;
+
 }

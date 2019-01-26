@@ -6,7 +6,7 @@ public abstract class Action : ScriptableObject
 {
 	public string Name;
 	[TextArea(4, 20)] public string Description;
-	[Range(0,10)] public int ToolsNeeded;
+	//[Range(0,10)] public int ToolsNeeded;
 	[Range(0, 10)] public int MinWeek;
 	[Range(1, 3)] public int InitialSlots;
 
