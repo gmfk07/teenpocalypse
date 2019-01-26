@@ -26,6 +26,7 @@ public class ActionPanelController : MonoBehaviour
 		foreach (Action action in GameController.Instance.AvailableActions)
 		{
 			Vector3 offset = new Vector3(pad * (i % panelsPerRow), pad * 0.75f * (i / panelsPerRow), 0);
+			offset.x -= GameController.Instance.AvailableActions.Count / 2 * pad - 60;
 			GameObject panel = Instantiate(ActionPanel, transform.position + offset, Quaternion.identity, transform);
 			ActionPanel actionPanel = panel.GetComponent<ActionPanel>();
 			actionPanel.action = action;

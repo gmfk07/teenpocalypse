@@ -25,12 +25,13 @@ public class DialogBoxController : MonoBehaviour
     {
         GUI.Label(new Rect(5, 25, width - 8, 250), currentEvent.Description);
 
-        for (int i=0; i<currentEvent.choices.Count; i++)
+        for (int i=0; i<currentEvent.Choices.Count; i++)
         {
-            if (GUI.Button(new Rect(5, 150 + 25*i, width - 10, 20), currentEvent.choices[i]))
+            if (GUI.Button(new Rect(5, 150 + 25*i, width - 10, 20), currentEvent.Choices[i]))
             {
                 currentEvent.Execute(i);
                 show = false;
+                GameController.Instance.IncrementWeek();
             }
         }
     }
