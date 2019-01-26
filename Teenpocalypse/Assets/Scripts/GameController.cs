@@ -30,6 +30,10 @@ public class GameController : MonoBehaviour
 
 	public delegate void OnWeekStart();
 	public OnWeekStart Event_OnWeekStart;
+	public delegate void OnCharacterRemoved(Character character);
+	public OnCharacterRemoved Event_OnCharacterRemoved;
+	public delegate void OnCharacterAdded(Character character);
+	public OnCharacterAdded Event_OnCharacterAdded;
 
 	public Character SelectedCharacter;
 	public Action SelectedAction;
@@ -80,13 +84,17 @@ public class GameController : MonoBehaviour
         int foodNeeded = FoodPerPerson * Roster.Count;
         if (foodNeeded >= Food)
         {
-            List<Character> newRoster = new List<Character>();
+            List<Character> toBeRemoved = new List<Character>();
             foreach (Character character in Roster)
             {
-                if (character.ChangeHealth(foodNeeded - Food))
-                    newRoster.Add(character);
-            }
-            Roster = newRoster;
+				if (!character.ChangeHealth(foodNeeded - Food))
+					toBeRemoved.Add(character);
+
+			}
+			foreach (Character character in toBeRemoved)
+			{
+				RemoveCharacter(character);
+			}
             Food = 0;
         } else {
             Food -= foodNeeded;
@@ -151,17 +159,28 @@ public class GameController : MonoBehaviour
 		//	}
 		//}
 	}
-	void AddCharacter(Character character)
+	public void AddCharacter(Character character)
 	{
 		character.Init();
 		Roster.Add(character);
+		if (Event_OnCharacterAdded != null)
+			Event_OnCharacterAdded(character);
 	}
-	void RemoveCharacter(Character character)
+	public void RemoveCharacter(Character character)
 	{
 		Roster.Remove(character);
+		Event_OnCharacterRemoved(character);
 	}
 	#endregion
 
+    //Returns true if morale test succeeds, false otherwise
+    public bool TestMorale(int successModifier)
+    {
+        if (UnityEngine.Random.Range(0, 100 - successModifier) <= TeamMorale)
+            return true;
+        return false;
+    }
+	#region Mouse Handling
 	void OnMouseClicked()
 	{
 		List<GameObject> clickedOnObjects = ClickAndGetResults();
@@ -177,16 +196,7 @@ public class GameController : MonoBehaviour
 			SelectedAction = actionPanel.action;
 		}
 	}
-
-    //Returns true if morale test succeeds, false otherwise
-    public bool TestMorale(int successModifier)
-    {
-        if (UnityEngine.Random.Range(0, 100 - successModifier) <= TeamMorale)
-            return true;
-        return false;
-    }
-
-    private void OnMouseReleased()
+	private void OnMouseReleased()
 	{
 		List<GameObject> clickedOnObjects = ClickAndGetResults();
 
@@ -234,4 +244,6 @@ public class GameController : MonoBehaviour
 		}
 		return default(T);
 	}
+
+	#endregion
 }
