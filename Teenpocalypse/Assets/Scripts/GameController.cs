@@ -10,6 +10,7 @@ using Random = UnityEngine.Random; //For randomizing game over screen image.
 
 public class GameController : MonoBehaviour
 {
+    public DayNightFilter dayNightFilter;
 
 	public static GameController Instance = null;
 	// Data currently exposed for debugging purposes
@@ -109,68 +110,123 @@ public class GameController : MonoBehaviour
     }
 
 	// Activated on Button Press
-	public void NextWeek()
-	{
+	public void NextWeek() { StartCoroutine(TheTimesTheyAreAChangin()); }
+
+    private bool dialogBoxGone = false;
+    public void DialogBoxGone() { dialogBoxGone = true; }
+
+    private IEnumerator TheTimesTheyAreAChangin() {
         SoundManager.instance.PlaySingle(clockTickSound);
+
+        float randN = Random.Range(0f, 1f);
+
+        int numEvents = randN < .5f ? 1 : (randN < .85f ? 2 : 3);
+        int eventsLeft = numEvents;
+        List<Event> weekEvents = new List<Event>(AvailableEvents);
+
+        const float timeScale = 1;
+        float timeLeft = 7;
+        bool eaten = false;
+        bool worked = false;
+        bool slept = false;
+        while(timeLeft > 0) {
+            timeLeft -= Time.deltaTime * timeScale;
+            float hour = (timeLeft - Mathf.Floor(timeLeft)) * 24;
+            dayNightFilter.nightness = Mathf.Sin(hour / 12 * Mathf.PI);
+            
+
+            if(hour < 1) { //reset for new day
+                eaten = false;
+                worked = false;
+                slept = false;
+            }
+
+            if(hour > 12 && !eaten) {
+                eaten = true;
+                EatFood();
+            }
+            if(hour > 14 && !worked) {
+                worked = true;
+                DoActions();
+            }
+            if(hour > 20 && !slept) {
+                slept = true;
+                Sleep();
+            }
+
+            if(timeLeft < 7f / numEvents * 0.8f && eventsLeft == 1 ||
+               timeLeft < 7f / numEvents * 1.5f  && eventsLeft == 2 ||
+               timeLeft < 7f / numEvents * 2.8f  && eventsLeft == 3) {
+                PickEvent(weekEvents);
+                eventsLeft--;
+                yield return new WaitUntil(() => dialogBoxGone);
+                dialogBoxGone = false;
+            }
+
+
+            yield return null;
+            currentWeek.text = $"Week {Week} Day {1 + Mathf.FloorToInt(7 - timeLeft)}";
+        }
+        currentWeek.text = "Week " + Week;
+
+        if(TeamMorale <= 0) { GameOver(); }
+    }
+
+    private void PickEvent(List<Event> weekEvents) {
+        if(AvailableEvents.Count > 0) {
+            Event e = AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)];
+            e.Chosen();
+            DialogBoxController.ShowBox(e);
+            weekEvents.Remove(e);
+            if(e.isRitual)
+                AvailableEvents.Remove(e);
+        } else {
+            GameOver();
+        }
+    }
+
+    private void DoActions() {
+        foreach(Character character in Roster) {
+            if(character.AssignedAction != null) {
+                character.AssignedAction.Execute(character);
+                character.AssignedAction = null;
+            } else {
+                character.ChangeHealth(RestHealthIncrease);
+                character.ChangeRelationship(RestRelationshipIncrease);
+            }
+        }
+    }
+
+    private void Sleep() {
+        BuildingController bc = GetComponent<BuildingController>();
+
+        if(bc.shelterAmount <= Roster.Count)
+            TeamMorale -= Mathf.Max(Roster.Count - bc.shelterAmount, 0);
+    }
+
+    private void EatFood() {
         int foodNeeded = FoodPerPerson * Roster.Count;
-        if (foodNeeded >= Food)
-        {
+        if(foodNeeded >= Food) {
             List<Character> toBeRemoved = new List<Character>();
-            foreach (Character character in Roster)
-            {
-				if (!character.ChangeHealth(-StarveHealthDecrease * ((foodNeeded-Food)/foodNeeded)) ||
-                    !character.ChangeRelationship(-StarveRelationshipDecrease * ((foodNeeded-Food)/foodNeeded)))
-					toBeRemoved.Add(character);
-			}
-			foreach (Character character in toBeRemoved)
-			{
-				RemoveCharacter(character);
-			}
+            foreach(Character character in Roster) {
+                if(!character.ChangeHealth(-StarveHealthDecrease * ((foodNeeded - Food) / foodNeeded)) ||
+                   !character.ChangeRelationship(-StarveRelationshipDecrease * ((foodNeeded - Food) / foodNeeded)))
+                    toBeRemoved.Add(character);
+            }
+            foreach(Character character in toBeRemoved) {
+                RemoveCharacter(character);
+            }
             Food = 0;
         } else {
             Food -= foodNeeded;
         }
+    }
 
-        BuildingController bc = GetComponent<BuildingController>();
-
-        if (bc.shelterAmount <= Roster.Count)
-            TeamMorale -= Mathf.Max(Roster.Count - bc.shelterAmount, 0);
-
-		foreach (Character character in Roster)
-		{
-			if (character.AssignedAction != null)
-			{
-				character.AssignedAction.Execute(character);
-				character.AssignedAction = null;
-			} else {
-                character.ChangeHealth(RestHealthIncrease);
-                character.ChangeRelationship(RestRelationshipIncrease);
-            }
-		}
-        if (AvailableEvents.Count > 0)
-        {
-			Event e = AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)];
-			e.Chosen();
-			DialogBoxController.ShowBox(e);
-            if (e.isRitual)
-                AvailableEvents.Remove(e);
-        }
-        else
-        {
-            GameOver();
-        }
-
-        if(TeamMorale <= 0)
-        { GameOver(); }
-
-	}
-
-	#region Incrementing and Modifying
+    #region Incrementing and Modifying
 	// Called when a new week is started
 	public void IncrementWeek()
 	{
 		++Week;
-        currentWeek.text = "Week " + Week;
         OnDefense.Clear();
         LoadActions();
         LoadEvents();
