@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using TMPro; //For game over text
+using Random = UnityEngine.Random; //For randomizing game over screen image.
 
 public class GameController : MonoBehaviour
 {
@@ -49,7 +51,12 @@ public class GameController : MonoBehaviour
 
     public DialogBoxController dialogBoxController;
 
-	List<RaycastResult> m_HitObjects;
+    //Game Over objects
+    public TextMeshProUGUI weeksSurvived;
+    public GameObject gameOverBackground;
+    public Sprite[] GameOverSprites;
+
+    List<RaycastResult> m_HitObjects;
 
 	void Awake()
 	{
@@ -82,6 +89,7 @@ public class GameController : MonoBehaviour
 		{
 			AddCharacter(character);
 		}
+        HideGameOver();
 		LoadActions();
         LoadEvents();
 		m_HitObjects = new List<RaycastResult>();
@@ -120,8 +128,17 @@ public class GameController : MonoBehaviour
                 character.ChangeRelationship(RestRelationshipIncrease);
             }
 		}
-		if (AvailableEvents.Count > 0)
-			dialogBoxController.ShowBox(AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)]);
+        if (AvailableEvents.Count > 0)
+        {
+            dialogBoxController.ShowBox(AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)]);
+        }
+        else
+        {
+            GameOver();
+        }
+
+        if(TeamMorale <= 0)
+        { GameOver(); }
 	}
 
 	#region Incrementing and Modifying
@@ -194,6 +211,56 @@ public class GameController : MonoBehaviour
 		Event_OnActionRemoved(action);
 	}
 	#endregion
+
+    //Ends the game!
+    public void GameOver()
+    {
+        //Set the game over text specifying how long your player survived.
+        if (Week == 1)
+        {
+            weeksSurvived.text = "You survived " + Week + " week.";
+        }
+        else
+        {
+            weeksSurvived.text = "You survived " + Week + " weeks.";
+        }
+
+        //Hide the normal player GUI and controls
+        HideControls();
+
+        //Set the Game Over Image with a Random fail message, and then show the image
+        SetRandomGameOverMessage();
+        gameOverBackground.SetActive(true);
+        
+    }
+
+    public void HideGameOver()
+    {
+        gameOverBackground.SetActive(false);
+        weeksSurvived.text = "";
+    }
+
+    public void HideControls()
+    {
+        GameObject charPan = GameObject.Find("CharactersPanelContainer");
+        GameObject gameActions = GameObject.Find("Actions");
+        GameObject guiText = GameObject.Find("Text");
+        GameObject nextWeekButton = GameObject.Find("Next Week Button");
+        DialogBoxController eventGUI = GameObject.Find("GameController").GetComponent<DialogBoxController>();
+        charPan.SetActive(false);
+        gameActions.SetActive(false);
+        guiText.SetActive(false);
+        nextWeekButton.SetActive(false);
+        //eventGUI.currentEvent = null;
+        eventGUI.enabled = false;
+
+    }
+    private void SetRandomGameOverMessage()
+    {
+        Debug.Log("Called SetRandomGameOverMessage");
+        Image gameOverImage = gameOverBackground.GetComponent<Image>();
+        gameOverImage.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
+    }
 
     //Returns true if morale test succeeds, false otherwise
     public bool TestMorale(int successModifier)
