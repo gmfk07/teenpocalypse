@@ -15,7 +15,7 @@ public class StormDestructionEvent : Event
 	}
 	public override string GetDescription()
 	{
-		return "A storm hit!\n\nOnly " + ChosenCharacter.Name + "'s portion of the storm has been hit."
+		return "A storm hit!\n\nOnly " + ChosenCharacter.Name + "'s home has been hit."
 			+ ChosenCharacter.Name + " is really upset and is afraid of sleeping outside.";
 	}
 
