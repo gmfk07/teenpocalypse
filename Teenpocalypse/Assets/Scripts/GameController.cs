@@ -103,6 +103,10 @@ public class GameController : MonoBehaviour
 		{
 			selectedActionPanel.transform.position = Input.mousePosition;
 		}
+        if (Roster.Count == 0)
+        {
+            GameOver();
+        }
 	}
 
 	//Initializes the game for each level.
