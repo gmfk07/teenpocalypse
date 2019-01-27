@@ -15,20 +15,34 @@ public class CharacterPanel : MonoBehaviour
 	public RawImage characterImageUI;
 	public Texture characterPicture;
 
+	Color originalColor;
+
 	// Start is called before the first frame update
 	void Start()
     {
 		LoadCharacterData();
+		originalColor = characterImageUI.color;
 	}
 
     // Update is called once per frame
     void Update()
     {
         LoadCharacterData();
-		if (character.AssignedAction != null)
-			characterActionText.text = character.AssignedAction.Name;
+		if (character.IsResting)
+		{
+			Color c = originalColor;
+			c.r -= 0.5f; c.g -= 0.5f; c.b -= 0.5f;
+			characterImageUI.color = c;
+			characterActionText.text = "Resting: " + character.RestingWeeks + " Weeks Left";
+		}
 		else
-			characterActionText.text = "";
+		{
+			characterImageUI.color = originalColor;
+			if (character.AssignedAction != null)
+				characterActionText.text = character.AssignedAction.Name;
+			else
+				characterActionText.text = "";
+		}
 	}
 
 	public void LoadCharacterData()

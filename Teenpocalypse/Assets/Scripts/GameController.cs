@@ -28,6 +28,9 @@ public class GameController : MonoBehaviour
 	public int TeamMorale = 50;
     public float DefenseMultiplier = 1;
 
+    public List<Character> AvailableCharacters;
+    private List<Character> WillAddListCharacters = new List<Character>();
+
     public List<Character> OnDefense = new List<Character>();
 
 	public List<Action> AllActions;
@@ -186,15 +189,21 @@ public class GameController : MonoBehaviour
     }
 
     private void DoActions() {
-        foreach(Character character in Roster) {
-            if(character.AssignedAction != null) {
-                character.AssignedAction.Execute(character);
-                character.AssignedAction = null;
-            } else {
-                character.ChangeHealth(RestHealthIncrease);
-                character.ChangeRelationship(RestRelationshipIncrease);
+            // Execute All Assigned Actions
+            foreach (Character character in Roster)
+            {
+                if (character.AssignedAction != null)
+                {
+					character.AssignedAction.AssignedCharacters.Remove(character);
+					character.AssignedAction.Execute(character);
+                    character.AssignedAction = null;
+                }
+                else
+                {
+                    character.ChangeHealth(RestHealthIncrease);
+                    character.ChangeRelationship(RestRelationshipIncrease);
+                }
             }
-        }
     }
 
     private void Sleep() {
@@ -205,21 +214,26 @@ public class GameController : MonoBehaviour
     }
 
     private void EatFood() {
-        int foodNeeded = FoodPerPerson * Roster.Count;
-        if(foodNeeded >= Food) {
-            List<Character> toBeRemoved = new List<Character>();
-            foreach(Character character in Roster) {
-                if(!character.ChangeHealth(-StarveHealthDecrease * ((foodNeeded - Food) / foodNeeded)) ||
-                   !character.ChangeRelationship(-StarveRelationshipDecrease * ((foodNeeded - Food) / foodNeeded)))
-                    toBeRemoved.Add(character);
+            int foodNeeded = FoodPerPerson * Roster.Count;
+            if (foodNeeded >= Food)
+            {
+                List<Character> toBeRemoved = new List<Character>();
+                foreach (Character character in Roster)
+                {
+                    if (!character.ChangeHealth(-StarveHealthDecrease * ((foodNeeded - Food) / foodNeeded)) ||
+                        !character.ChangeRelationship(-StarveRelationshipDecrease * ((foodNeeded - Food) / foodNeeded)))
+                        toBeRemoved.Add(character);
+                }
+                foreach (Character character in toBeRemoved)
+                {
+                    RemoveCharacter(character);
+                }
+                Food = 0;
             }
-            foreach(Character character in toBeRemoved) {
-                RemoveCharacter(character);
+            else
+            {
+                Food -= foodNeeded;
             }
-            Food = 0;
-        } else {
-            Food -= foodNeeded;
-        }
     }
 
     #region Incrementing and Modifying
@@ -235,6 +249,11 @@ public class GameController : MonoBehaviour
             if (character.RestingWeeks > 0)
                 character.RestingWeeks--;
         }
+        foreach (Character character in WillAddListCharacters)
+        {
+            AddCharacter(character);
+        }
+        WillAddListCharacters.Clear();
     }
 
 	void LoadActions()
@@ -297,7 +316,7 @@ public class GameController : MonoBehaviour
 		AvailableActions.Remove(action);
 		Event_OnActionRemoved(action);
 	}
-	#endregion
+    #endregion
 
     //Ends the game!
     public void GameOver()
@@ -317,12 +336,16 @@ public class GameController : MonoBehaviour
         //Hide the normal player GUI and controls
         HideControls();
 
+        SpriteRenderer gameOverSpriteRenderer = gameOverBackground.GetComponent<SpriteRenderer>();
+
         //Set the Game Over Image with a Random fail message, and then show the image
-        SetRandomGameOverMessage();
+        gameOverSpriteRenderer.sprite = GetRandomGameOverMessage();
+
+        Debug.Log("Activate game over background");
+        weeksSurvived.color = new Color(weeksSurvived.color.r, weeksSurvived.color.g, weeksSurvived.color.b, 1f);
         gameOverBackground.SetActive(true);
+        StartCoroutine(FadeIn(gameOverBackground));
         SoundManager.instance.PlaySingle(gameOverSound);
-
-
     }
 
     public void HideGameOver()
@@ -334,7 +357,7 @@ public class GameController : MonoBehaviour
 
     public void HideControls()
     {
-        GameObject gameplayScreen= GameObject.Find("GameplayScreen");
+        GameObject gameplayScreen = GameObject.Find("GameplayScreen");
         DialogBoxController eventGUI = GameObject.Find("GameController").GetComponent<DialogBoxController>();
         BuildingController[] buildGUIs = GameObject.Find("GameController").GetComponents<BuildingController>();
         eventGUI.enabled = false;
@@ -348,13 +371,10 @@ public class GameController : MonoBehaviour
         currentWeek.text = "";
     }
 
-    private void SetRandomGameOverMessage()
+    private Sprite GetRandomGameOverMessage()
     {
-        //Image gameOverImage = gameOverBackground.GetComponent<Image>();
-        //gameOverImage.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
-
-        SpriteRenderer gameOverSpriteRenderer = gameOverBackground.GetComponent<SpriteRenderer>();
-        gameOverSpriteRenderer.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
+        Debug.Log("Get a random sprite");
+        return GameOverSprites[Random.Range(0, GameOverSprites.Length)];
     }
 
     public void ResetGame()
@@ -364,6 +384,23 @@ public class GameController : MonoBehaviour
         rm.RestartGameController();
 
     }
+
+    private static IEnumerator FadeIn(GameObject newObj)
+    {
+        const float time = 4;
+        float timeLeft = time;
+        var sprite = newObj?.GetComponent<SpriteRenderer>();
+        var text = newObj?.GetComponent<TextMeshProUGUI>();
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+            if (text != null) text.color = Color.Lerp(Color.clear, Color.white, (time - timeLeft) / time);
+            if (sprite != null) sprite.color = Color.Lerp(Color.clear, Color.white, (time - timeLeft) / time);
+            yield return null;
+        }
+    }
+
 
     //Returns true if morale test succeeds, false otherwise
     public bool TestMorale(int successModifier)
@@ -397,7 +434,8 @@ public class GameController : MonoBehaviour
 		ActionPanel actionPanel = FindFirstOf<ActionPanel>(clickedOnObjects);
 		if (actionPanel)
 		{
-			SelectedAction = actionPanel.action;
+			if (!actionPanel.action.SlotsFilled)
+				SelectedAction = actionPanel.action;
 		}
 	}
 	private void OnMouseReleased()
@@ -409,13 +447,25 @@ public class GameController : MonoBehaviour
 		{
 			if (SelectedAction)
 			{
-				characterPanel.character.AssignedAction = SelectedAction;
+				if (!characterPanel.character.IsResting)
+				{
+					Action cAction = characterPanel.character.AssignedAction;
+					if (cAction != SelectedAction)
+					{
+						if (characterPanel.character.AssignedAction != null)
+						{
+							characterPanel.character.AssignedAction.AssignedCharacters.Remove(characterPanel.character);
+						}
+						characterPanel.character.AssignedAction = SelectedAction;
+						characterPanel.character.AssignedAction.AssignedCharacters.Add(characterPanel.character);
+					}
+				}
 			}
 		}
 		ActionPanel actionPanel = FindFirstOf<ActionPanel>(clickedOnObjects);
 		if (actionPanel)
 		{
-			
+
 		}
 
 		SelectedAction = null;
@@ -454,7 +504,7 @@ public class GameController : MonoBehaviour
 
 	#endregion
 
-    public void ChangeFood(int delta)
+	public void ChangeFood(int delta)
     {
         Food = Mathf.Max(Food + delta, 0);
     }
@@ -462,5 +512,12 @@ public class GameController : MonoBehaviour
     public void ChangeSupplies(int delta)
     {
         Supplies = Mathf.Max(Supplies + delta, 0);
+    }
+
+    public void RecruitCharacter()
+    {
+        Character newCharacter = AvailableCharacters[Random.Range(0, AvailableCharacters.Count)];
+        WillAddListCharacters.Add(newCharacter);
+        AvailableCharacters.Remove(newCharacter);
     }
 }

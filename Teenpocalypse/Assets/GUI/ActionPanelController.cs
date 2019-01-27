@@ -25,7 +25,7 @@ public class ActionPanelController : MonoBehaviour
 	{
 		int i = 0;
 		int pad = 205;
-		int panelsPerRow = 3;
+		int panelsPerRow = 10;
 		foreach (Action action in GameController.Instance.AvailableActions)
 		{
 			Vector3 offset = new Vector3(pad * (i % panelsPerRow), pad * 0.75f * (i / panelsPerRow), 0);

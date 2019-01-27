@@ -9,15 +9,12 @@ public class Character : ScriptableObject
 	public string Bio = "Bill likes pineapples";
     public float WorkMultiplier = 1;
 	[Range(0, Constants.MAX_VALUE)] public int MaxHealth;
-	//[Range(0, Constants.MAX_VALUE)] public int MaxEnergy;
 	[Range(0, Constants.MAX_VALUE)] public int InitialRelationship;
-	//[Range(0, Constants.MAX_VALUE)] public int InitialMorale;
 
 	[HideInInspector] public int Health;
-	//[HideInInspector] public int Energy;
 	[HideInInspector] public int Relationship;
-    //[HideInInspector] public int Morale;
     public int RestingWeeks = 0;
+	public bool IsResting { get { return RestingWeeks > 0; } }
 
 	public Texture Icon;
 	[HideInInspector] public Action AssignedAction;
@@ -28,10 +25,14 @@ public class Character : ScriptableObject
         Name = newName.GetNewName();
         Bio = newName.GetNewName() + " likes pineapples";
         Health = MaxHealth;
-		//Energy = MaxEnergy;
 		Relationship = InitialRelationship;
-		//Morale = InitialMorale;
 		AssignedAction = null;
+		GameController.Instance.Event_OnWeekStart += OnWeekStart;
+	}
+
+	public void OnWeekStart()
+	{
+		RestingWeeks = Mathf.Max(0, RestingWeeks - 1);
 	}
 
     //Returns true if character is still alive, false otherwise
