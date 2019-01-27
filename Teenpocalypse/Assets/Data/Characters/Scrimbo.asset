@@ -22,5 +22,6 @@ MonoBehaviour:
   Relationship: 60
   RestingWeeks: 0
   GenerateName: 1
-  Icon: {fileID: 2800000, guid: 3da6ba6eef64dc24da828dba8a808f98, type: 3}
+  Icon: {fileID: 2800000, guid: 8484fdb53f948b047a7377b58099baf3, type: 3}
+  Sprite: {fileID: 7217483682365383864, guid: 23196dd1f1e8ef749bdacc8e4b65fe60, type: 3}
   AssignedAction: {fileID: 0}

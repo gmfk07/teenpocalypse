@@ -151,11 +151,24 @@ public class GameController : MonoBehaviour
         bool eaten = false;
         bool worked = false;
         bool slept = false;
+
+//        List<Vector3> startPositions = new List<Vector3>();
+//        List<Vector3> endPositions = new List<Vector3>();
+//        foreach (Character character in Roster)
+//        {
+//            startPositions.Add(character.Sprite.transform.position);
+//            endPositions.Add(new Vector3(Random.Range(-20f, 20f), Random.Range(-20f, 20f), 0));
+//        }
         while(timeLeft > 0) {
             timeLeft -= Time.deltaTime * timeScale;
             float hour = (timeLeft - Mathf.Floor(timeLeft)) * 24;
             dayNightFilter.nightness = Mathf.Sin(hour / 12 * Mathf.PI);
-            
+
+//            int i = 0;
+//            foreach (Character character in Roster) {
+//                character.Sprite.transform.position = Vector3.Lerp(startPositions[i], endPositions[i], hour / 24);
+//                i++;
+//            }
 
             if(hour < 1) { //reset for new day
                 eaten = false;
@@ -324,6 +337,7 @@ public class GameController : MonoBehaviour
 	public void AddCharacter(Character character)
 	{
 		character.Init();
+	    Instantiate(character.Sprite);
 		Roster.Add(character);
 		Event_OnCharacterAdded?.Invoke(character);
 	}

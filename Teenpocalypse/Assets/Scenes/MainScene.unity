@@ -3943,6 +3943,8 @@ PrefabInstance:
       propertyPath: Food
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
       propertyPath: nextWeekButton
       value: 
       objectReference: {fileID: 2133359207}

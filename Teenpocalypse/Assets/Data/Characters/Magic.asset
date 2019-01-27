@@ -18,9 +18,10 @@ MonoBehaviour:
   MaxHealth: 60
   InitialRelationship: 90
   InitialWorkMultiplier: 1
-  Health: 0
-  Relationship: 0
+  Health: 60
+  Relationship: 90
   RestingWeeks: 0
   GenerateName: 0
-  Icon: {fileID: 2800000, guid: 8005d206eb48ed64cac65eecd3f68313, type: 3}
+  Icon: {fileID: 2800000, guid: d7f853e666bdac94a86d4d0bbe48478c, type: 3}
+  Sprite: {fileID: 1568089444200984550, guid: 215c002c90176224e9cc2629a0ac8656, type: 3}
   AssignedAction: {fileID: 0}
