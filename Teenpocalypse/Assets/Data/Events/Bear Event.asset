@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0227af32564b1a247b1e2363e5bbb529, type: 3}
-  m_Name: Feast Event
+  m_Script: {fileID: 11500000, guid: 6876b67d41a03e34eb3c569e56c3f2a2, type: 3}
+  m_Name: Bear Event
   m_EditorClassIdentifier: 
-  Name: Feast
-  Description: The village is abuzz with the idea of a feast to celebrate our progress.
-    Can you afford to gorge yourselves?
+  Name: Bear
+  Description: A bear approaches the camp in the middle of the week.
   MinWeek: 0
   Choices:
-  - Yes, let's feast!
-  - No, we must conserve our food.
+  - Try to fight it off!
+  - Leave it alone.
   HasConsequencesText: 1
   UseDynamicDescription: 0

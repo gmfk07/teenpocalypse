@@ -152,6 +152,8 @@ public class GameController : MonoBehaviour
 			Event e = AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)];
 			e.Chosen();
 			DialogBoxController.ShowBox(e);
+            if (e.isRitual)
+                AvailableEvents.Remove(e);
         }
         else
         {
@@ -172,7 +174,12 @@ public class GameController : MonoBehaviour
         OnDefense.Clear();
         LoadActions();
         LoadEvents();
-	}
+        foreach (Character character in Roster)
+        {
+            if (character.RestingWeeks > 0)
+                character.RestingWeeks--;
+        }
+    }
 
 	void LoadActions()
 	{
@@ -194,7 +201,7 @@ public class GameController : MonoBehaviour
         {
             if (e.MinWeek <= Week)
             {
-                if (!AvailableEvents.Contains(e))
+                if (!AvailableEvents.Contains(e) && (!e.isRitual || (Week == 1 && e.MinWeek <= 1)))
                     AvailableEvents.Add(e);
             }
         }
@@ -287,8 +294,11 @@ public class GameController : MonoBehaviour
 
     private void SetRandomGameOverMessage()
     {
-        Image gameOverImage = gameOverBackground.GetComponent<Image>();
-        gameOverImage.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
+        //Image gameOverImage = gameOverBackground.GetComponent<Image>();
+        //gameOverImage.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
+
+        SpriteRenderer gameOverSpriteRenderer = gameOverBackground.GetComponent<SpriteRenderer>();
+        gameOverSpriteRenderer.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
     }
 
     public void ResetGame()
@@ -309,7 +319,12 @@ public class GameController : MonoBehaviour
 
     public bool TestDefense(float difficulty)
     {
-        if (OnDefense.Count * DefenseMultiplier >= difficulty)
+        float score = 0;
+        foreach (Character character in OnDefense)
+        {
+            score += character.WorkMultiplier;
+        }
+        if (score * DefenseMultiplier >= difficulty)
             return true;
         return false;
     }
