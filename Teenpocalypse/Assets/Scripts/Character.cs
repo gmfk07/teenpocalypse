@@ -23,7 +23,10 @@ public class Character : ScriptableObject
 	
 	public void Init()
 	{
-		Health = MaxHealth;
+        NameGenerator newName = new NameGenerator();
+        Name = newName.GetNewName();
+        Bio = newName.GetNewName() + " likes pineapples";
+        Health = MaxHealth;
 		//Energy = MaxEnergy;
 		Relationship = InitialRelationship;
 		//Morale = InitialMorale;
