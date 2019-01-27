@@ -24,7 +24,7 @@ public class DepressionEvent : Event
         switch (index)
         {
             case 0:
-                ChosenCharacter.RestingWeeks += 4;
+                ChosenCharacter.RestingWeeks += 2;
 				ChosenCharacter.ChangeRelationshipWithDeletion(10);
 				break;
 			case 1:
@@ -41,7 +41,7 @@ public class DepressionEvent : Event
 		{
 			case 0:
 				return ChosenCharacter.Name + " gives you a faint smile when you tell them to take some time off. You hope you haven't sealed"
-					+ "the settlement's fate.\n" + ChosenCharacter.Name +"'s Relation: +10\n" + ChosenCharacter.Name + " rests for 3 weeks";
+					+ "the settlement's fate.\n" + ChosenCharacter.Name +"'s Relation: +10\n" + ChosenCharacter.Name + " rests next week";
 			default:
 				return ChosenCharacter.Name + " struggles to get back to work, and brings down the camp's morale. Their illness has also" +
                     "taken a toll on their productivity.\n"

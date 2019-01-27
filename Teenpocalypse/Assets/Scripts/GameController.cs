@@ -68,6 +68,7 @@ public class GameController : MonoBehaviour
     public GameObject gameOverBackground;
     public Sprite[] GameOverSprites;
     private bool gameOver;
+    private bool isTicking = false;
 
     //Sound Effects
     public AudioClip clickSound;
@@ -120,8 +121,15 @@ public class GameController : MonoBehaviour
         currentWeek.text = "Week " + Week;
     }
 
-	// Activated on Button Press
-	public void NextWeek() { StartCoroutine(TheTimesTheyAreAChangin()); }
+    // Activated on Button Press
+    public void NextWeek()
+    {
+        if (!isTicking)
+        {
+            isTicking = true;
+            StartCoroutine(TheTimesTheyAreAChangin());
+        }
+    }
 
     private bool dialogBoxGone = false;
     public void DialogBoxGone() { dialogBoxGone = true; }
@@ -178,6 +186,7 @@ public class GameController : MonoBehaviour
             yield return null;
             currentWeek.text = $"Week {Week} Day {1 + Mathf.FloorToInt(7 - timeLeft)}";
         }
+        isTicking = false;
         currentWeek.text = "Week " + Week;
 
         if(TeamMorale <= 0) { GameOver(); }
