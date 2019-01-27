@@ -130,6 +130,8 @@ public class GameController : MonoBehaviour
                 }
                 foreach (Character character in toBeRemoved)
                 {
+					if (character.AssignedAction != null)
+						character.AssignedAction.AssignedCharacters.Remove(character);
                     RemoveCharacter(character);
                 }
                 Food = 0;

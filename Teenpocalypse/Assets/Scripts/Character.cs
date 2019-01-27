@@ -49,7 +49,11 @@ public class Character : ScriptableObject
 	public void ChangeHealthWithDeletion(int delta)
 	{
 		if (!ChangeHealth(delta))
+		{
+			if (AssignedAction != null)
+				AssignedAction.AssignedCharacters.Remove(this);
 			GameController.Instance.RemoveCharacter(this);
+		}
 	}
 
 	//Returns true if character is still present, false otherwise
@@ -66,7 +70,11 @@ public class Character : ScriptableObject
 	public void ChangeRelationshipWithDeletion(int delta)
 	{
 		if (!ChangeRelationship(delta))
+		{
+			if (AssignedAction != null)
+				AssignedAction.AssignedCharacters.Remove(this);
 			GameController.Instance.RemoveCharacter(this);
+		}
 	}
 
     //Returns true if relationship test succeeds, false otherwise
