@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour
 
 	public Character SelectedCharacter;
 	public Action SelectedAction;
+	private GameObject selectedActionPanel;
 
     public DialogBoxController DialogBoxController;
 
@@ -72,6 +73,8 @@ public class GameController : MonoBehaviour
     public AudioClip clockTickSound;
     public AudioClip gameOverSound;
     public AudioClip newActionAvailableSound;
+    public AudioClip buildingSound;
+    public AudioClip timePassingSound;
 
     List<RaycastResult> m_HitObjects;
 
@@ -93,6 +96,10 @@ public class GameController : MonoBehaviour
 		if (Input.GetMouseButtonUp(0))
 		{
 			OnMouseReleased();
+		}
+		if (selectedActionPanel != null)
+		{
+			selectedActionPanel.transform.position = Input.mousePosition;
 		}
 	}
 
@@ -130,6 +137,8 @@ public class GameController : MonoBehaviour
                 }
                 foreach (Character character in toBeRemoved)
                 {
+					if (character.AssignedAction != null)
+						character.AssignedAction.AssignedCharacters.Remove(character);
                     RemoveCharacter(character);
                 }
                 Food = 0;
@@ -270,11 +279,11 @@ public class GameController : MonoBehaviour
         //Set the game over text specifying how long your player survived.
         if (Week == 1)
         {
-            weeksSurvived.text = "You survived " + Week + " week.";
+            weeksSurvived.text = "You survived " + Week + " week";
         }
         else
         {
-            weeksSurvived.text = "You survived " + Week + " weeks.";
+            weeksSurvived.text = "You survived " + Week + " weeks";
         }
 
         //Hide the normal player GUI and controls
@@ -318,7 +327,6 @@ public class GameController : MonoBehaviour
 
     private Sprite GetRandomGameOverMessage()
     {
-        Debug.Log("Get a random sprite");
         return GameOverSprites[Random.Range(0, GameOverSprites.Length)];
     }
 
@@ -386,11 +394,18 @@ public class GameController : MonoBehaviour
 		if (actionPanel)
 		{
 			if (!actionPanel.action.SlotsFilled)
+			{
 				SelectedAction = actionPanel.action;
+				selectedActionPanel = Instantiate(actionPanel.gameObject, actionPanel.transform.parent);
+			}
 		}
 	}
 	private void OnMouseReleased()
 	{
+		if (selectedActionPanel != null)
+		{
+			Destroy(selectedActionPanel);
+		}
 		List<GameObject> clickedOnObjects = ClickAndGetResults();
 
 		CharacterPanel characterPanel = FindFirstOf<CharacterPanel>(clickedOnObjects);
