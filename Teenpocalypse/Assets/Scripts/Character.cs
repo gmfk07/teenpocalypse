@@ -30,6 +30,7 @@ public class Character : ScriptableObject
 			Name = newName.GetNewName();
 			Bio = newName.GetNewName() + " likes pineapples";
 		}
+        RestingWeeks = 0;
         Health = MaxHealth;
 		Relationship = InitialRelationship;
 		AssignedAction = null;

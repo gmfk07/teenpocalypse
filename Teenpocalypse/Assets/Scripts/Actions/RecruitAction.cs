@@ -11,7 +11,7 @@ public class RecruitAction : Action
 
     public override void Execute(Character actionTaker)
     {
-        if (Random.Range(0, 100) < 25 * actionTaker.WorkMultiplier && GameController.Instance.AvailableCharacters.Count > 0)
+        if (Random.Range(0, 100) < 6 * actionTaker.WorkMultiplier && GameController.Instance.AvailableCharacters.Count > 0)
             GameController.Instance.RecruitCharacter();
     }
 }
