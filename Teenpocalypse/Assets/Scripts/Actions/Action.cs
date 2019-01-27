@@ -13,6 +13,7 @@ public abstract class Action : ScriptableObject
 	// Runtime
 	[HideInInspector] public List<Character> AssignedCharacters;
 	[HideInInspector] public int Slots;
+	public bool SlotsFilled { get { return Slots - AssignedCharacters.Count <= 0;  } }
 
 	public Action()
 	{

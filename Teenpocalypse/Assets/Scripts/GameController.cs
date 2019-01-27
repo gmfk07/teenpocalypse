@@ -148,7 +148,8 @@ public class GameController : MonoBehaviour
             {
                 if (character.AssignedAction != null)
                 {
-                    character.AssignedAction.Execute(character);
+					character.AssignedAction.AssignedCharacters.Remove(character);
+					character.AssignedAction.Execute(character);
                     character.AssignedAction = null;
                 }
                 else
@@ -374,7 +375,8 @@ public class GameController : MonoBehaviour
 		ActionPanel actionPanel = FindFirstOf<ActionPanel>(clickedOnObjects);
 		if (actionPanel)
 		{
-			SelectedAction = actionPanel.action;
+			if (!actionPanel.action.SlotsFilled)
+				SelectedAction = actionPanel.action;
 		}
 	}
 	private void OnMouseReleased()
@@ -387,13 +389,24 @@ public class GameController : MonoBehaviour
 			if (SelectedAction)
 			{
 				if (!characterPanel.character.IsResting)
-					characterPanel.character.AssignedAction = SelectedAction;
+				{
+					Action cAction = characterPanel.character.AssignedAction;
+					if (cAction != SelectedAction)
+					{
+						if (characterPanel.character.AssignedAction != null)
+						{
+							characterPanel.character.AssignedAction.AssignedCharacters.Remove(characterPanel.character);
+						}
+						characterPanel.character.AssignedAction = SelectedAction;
+						characterPanel.character.AssignedAction.AssignedCharacters.Add(characterPanel.character);
+					}
+				}
 			}
 		}
 		ActionPanel actionPanel = FindFirstOf<ActionPanel>(clickedOnObjects);
 		if (actionPanel)
 		{
-			
+
 		}
 
 		SelectedAction = null;
@@ -432,7 +445,7 @@ public class GameController : MonoBehaviour
 
 	#endregion
 
-    public void ChangeFood(int delta)
+	public void ChangeFood(int delta)
     {
         Food = Mathf.Max(Food + delta, 0);
     }
