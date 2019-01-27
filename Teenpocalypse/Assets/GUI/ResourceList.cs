@@ -15,8 +15,8 @@ public class ResourceList : MonoBehaviour
 
     private void OnGUI()
     {
-        textField.text = "Food: " + GameController.Instance.Food + "\nSupplies: " + GameController.Instance.Supplies +
-            "\nTools: " + GameController.Instance.Tools + "\nWeapons: " + GameController.Instance.Weapons + "\nMorale: " +
+        textField.text = "Food: " + GameController.Instance.Food + "\nSupplies: " + GameController.Instance.Supplies
+            + "\nMorale: " +
             GameController.Instance.TeamMorale;
     }
 }
