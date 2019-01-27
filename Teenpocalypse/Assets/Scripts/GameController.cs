@@ -271,16 +271,17 @@ public class GameController : MonoBehaviour
 
     public void HideControls()
     {
-        GameObject charPan = GameObject.Find("CharactersPanelContainer");
-        GameObject gameActions = GameObject.Find("Actions");
-        GameObject guiText = GameObject.Find("Text");
-        GameObject nextWeekButton = GameObject.Find("Next Week Button");
+        GameObject gameplayScreen= GameObject.Find("GameplayScreen");
         DialogBoxController eventGUI = GameObject.Find("GameController").GetComponent<DialogBoxController>();
-        charPan.SetActive(false);
-        gameActions.SetActive(false);
-        guiText.SetActive(false);
-        nextWeekButton.SetActive(false);
+        BuildingController[] buildGUIs = GameObject.Find("GameController").GetComponents<BuildingController>();
         eventGUI.enabled = false;
+
+        foreach (BuildingController bc in buildGUIs)
+        {
+            bc.enabled = false;
+        }
+
+        gameplayScreen.SetActive(false);
         currentWeek.text = "";
     }
 
@@ -293,6 +294,8 @@ public class GameController : MonoBehaviour
     public void ResetGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        RestartManager rm = GameObject.Find("RestartManager").GetComponent<RestartManager>();
+        rm.RestartGameController();
 
     }
 

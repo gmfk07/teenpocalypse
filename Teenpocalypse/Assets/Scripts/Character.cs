@@ -37,7 +37,7 @@ public class Character : ScriptableObject
     public bool ChangeHealth(int delta)
     {
         Health += delta;
-        Mathf.Clamp(Health, 0, MaxHealth);
+		Health = Mathf.Clamp(Health, 0, MaxHealth);
         if (Health == 0)
             return false;
         return true;
@@ -54,7 +54,7 @@ public class Character : ScriptableObject
 	public bool ChangeRelationship(int delta)
     {
         Relationship += delta;
-        Mathf.Clamp(Health, 0, Constants.MAX_VALUE);
+		Relationship = Mathf.Clamp(Relationship, 0, Constants.MAX_VALUE);
         if (Relationship == 0)
             return false;
         return true;
