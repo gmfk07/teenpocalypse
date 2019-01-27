@@ -24,7 +24,7 @@ public class ActionPanelController : MonoBehaviour
 	void CreateActionPanels()
 	{
 		int i = 0;
-		int pad = 205;
+		int pad = 325;
 		int panelsPerRow = 10;
 		foreach (Action action in GameController.Instance.AvailableActions)
 		{

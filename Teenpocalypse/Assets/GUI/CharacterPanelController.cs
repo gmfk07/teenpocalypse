@@ -23,7 +23,7 @@ public class CharacterPanelController : MonoBehaviour
 	private void Update()
 	{
 		int i = 0;
-		int pad = 155;
+		int pad = 265;
 		foreach (CharacterPanel panel in characterPanels)
 		{
 			Vector3 offset = new Vector3(pad * i, 63, 0);
