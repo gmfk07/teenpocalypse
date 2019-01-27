@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Crystal
   Bio: Crystal smokes crystal meth and is alive inside of a group of people
-  WorkMultiplier: 1.2
+  WorkMultiplier: 1.1
   MaxHealth: 40
   InitialRelationship: 50
   InitialWorkMultiplier: 1.1
-  Health: 0
-  Relationship: 0
+  Health: 40
+  Relationship: 50
   RestingWeeks: 0
   GenerateName: 0
   Icon: {fileID: 2800000, guid: 373ab7b7318a223458509b07c252df90, type: 3}
+  Sprite: {fileID: 2132407431890690019, guid: c7fa3a51733e4e44b843f3e9697e85f2, type: 3}
   AssignedAction: {fileID: 0}
