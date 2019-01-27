@@ -20,4 +20,16 @@ public class FeastEvent : Event
                 break;
         }
     }
+
+	public override string GetConsequencesText(int choice)
+	{
+		switch (choice)
+		{
+			case 0:
+				return "The villagers feast! Yay!\nFood: -10\nMorale: +10";
+			case 1:
+				return "The villagers become angry. But ultimately trust in your leadership.\nFood: -0\nMorale: -5";
+		}
+		return "";
+	}
 }

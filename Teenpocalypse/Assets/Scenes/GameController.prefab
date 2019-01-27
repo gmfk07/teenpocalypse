@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9035680755774811886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9035680755774811884}
+  - component: {fileID: 9035680755774811887}
+  - component: {fileID: 9035680755774811885}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9035680755774811884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035680755774811886}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8392747, y: -1.1241789, z: -9.925781}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9035680755774811887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035680755774811886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d557b9d290abbea42b065189b34e0322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Week: 1
+  Supplies: 10
+  Food: 10
+  Tools: 0
+  Weapons: 0
+  FoodPerPerson: 2
+  StarveHealthDecrease: 8
+  StarveRelationshipDecrease: 5
+  RestHealthIncrease: 1
+  RestRelationshipIncrease: 1
+  TeamMorale: 50
+  AllActions:
+  - {fileID: 11400000, guid: 96623ae88c6f0cf4b8446d10759331f2, type: 2}
+  - {fileID: 11400000, guid: 649caccf7eb2c254b8904613a71e1e25, type: 2}
+  AvailableActions: []
+  AllEvents:
+  - {fileID: 11400000, guid: 855c13b344c80a849a8f4b3a63ab20e1, type: 2}
+  AvailableEvents: []
+  StartingRoster:
+  - {fileID: 11400000, guid: 00207cd1054bc53469b1eda1013d7884, type: 2}
+  - {fileID: 11400000, guid: b31c0dc23697a494cbeef56f4d33dc2b, type: 2}
+  Roster: []
+  SelectedCharacter: {fileID: 0}
+  SelectedAction: {fileID: 0}
+  DialogBoxController: {fileID: 9035680755774811885}
+  currentWeek: {fileID: 0}
+  weeksSurvived: {fileID: 0}
+  gameOverBackground: {fileID: 0}
+  GameOverSprites:
+  - {fileID: 21300000, guid: 4fd8e3e68c7ea1a48aafd720d5209e77, type: 3}
+  - {fileID: 21300000, guid: 6f4cff949abc2224085cf21a42423c01, type: 3}
+  - {fileID: 21300000, guid: de5a14d0413466d46b5e17a919217dbb, type: 3}
+  - {fileID: 21300000, guid: db1eefd678a2f724a9d516949a8c0de4, type: 3}
+  - {fileID: 21300000, guid: c126a5b402123e84e9b5bf951b117d08, type: 3}
+  - {fileID: 21300000, guid: 7ee12df026fc7ce4887d405c16bdf2e4, type: 3}
+  - {fileID: 21300000, guid: 3ba2b64498f08c447a10bd18bc32580e, type: 3}
+  - {fileID: 21300000, guid: a0e5431420578da49b5f641145f8bf6f, type: 3}
+--- !u!114 &9035680755774811885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035680755774811886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702a36d184c29b643a276b2524b54a05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentEvent: {fileID: 0}

@@ -17,6 +17,7 @@ public class ActionPanelController : MonoBehaviour
 		GameController.Instance.Event_OnActionAdded += OnActionChanged;
 		GameController.Instance.Event_OnActionRemoved += OnActionChanged;
 
+		actionPanels = new List<ActionPanel>();
 		CreateActionPanels();
     }
 
@@ -33,8 +34,11 @@ public class ActionPanelController : MonoBehaviour
 			ActionPanel actionPanel = panel.GetComponent<ActionPanel>();
 			actionPanel.action = action;
 			actionPanel.actionName.text = action.Name;
+			actionPanels.Add(actionPanel);
 			++i;
 		}
+
+		Debug.Log("Creating Action Panels");
 	}
 
 	void DeleteActionPanels()
@@ -46,6 +50,7 @@ public class ActionPanelController : MonoBehaviour
 			Destroy(panel.gameObject);
 		}
 		actionPanels.Clear();
+		Debug.Log("Deleting Action Panels");
 	}
 
 	void ResetCharacterPanels()
