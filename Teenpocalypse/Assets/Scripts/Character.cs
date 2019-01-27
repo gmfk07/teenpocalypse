@@ -17,6 +17,7 @@ public class Character : ScriptableObject
 	public bool IsResting { get { return RestingWeeks > 0; } }
 
 	public Texture Icon;
+	public GameObject Sprite;
 	[HideInInspector] public Action AssignedAction;
 	
 	public void Init()
