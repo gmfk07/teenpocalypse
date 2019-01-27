@@ -33,6 +33,7 @@ public class StormDestructionEvent : Event
 			result.Add(choice);
 			OtherCharacters.Add(affected);
 		}
+		return new List<string>();
 	}
 
     public override void Execute(int index)

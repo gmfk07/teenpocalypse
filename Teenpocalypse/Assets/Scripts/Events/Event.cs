@@ -20,6 +20,6 @@ public abstract class Event : ScriptableObject
 	{
 		return Choices;
 	}
-	public virtual void Chosen() { };
+	public virtual void Chosen() { }
 	public abstract string GetConsequencesText(int choice);
 }
