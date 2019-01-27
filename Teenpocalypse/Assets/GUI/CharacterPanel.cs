@@ -36,7 +36,7 @@ public class CharacterPanel : MonoBehaviour
 		characterName.text = character.Name;
 		characterPicture = character.Icon;
 		characterImageUI.texture = characterPicture;
-		characterHealthText.text = character.Health.ToString();
-		characterRelationshipText.text = character.Relationship.ToString();
+		characterHealthText.text = "Health: " + character.Health.ToString() + "/" + character.MaxHealth;
+		characterRelationshipText.text = "Relation: " +character.Relationship.ToString() + "/100";
 	}
 }

@@ -43,8 +43,15 @@ public class Character : ScriptableObject
         return true;
     }
 
-    //Returns true if character is still present, false otherwise
-    public bool ChangeRelationship(int delta)
+	// Don't use in loop!
+	public void ChangeHealthWithDeletion(int delta)
+	{
+		if (!ChangeHealth(delta))
+			GameController.Instance.RemoveCharacter(this);
+	}
+
+	//Returns true if character is still present, false otherwise
+	public bool ChangeRelationship(int delta)
     {
         Relationship += delta;
         Mathf.Clamp(Health, 0, Constants.MAX_VALUE);
@@ -52,6 +59,13 @@ public class Character : ScriptableObject
             return false;
         return true;
     }
+
+	// Don't use in loop!
+	public void ChangeRelationshipWithDeletion(int delta)
+	{
+		if (!ChangeRelationship(delta))
+			GameController.Instance.RemoveCharacter(this);
+	}
 
     //Returns true if relationship test succeeds, false otherwise
     public bool TestRelationship(int successModifier)
