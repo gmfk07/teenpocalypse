@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7997a1d4b0ca27343a0107ed2f7a04d0, type: 3}
   m_Name: Govt Ritual Event
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
+  Name: Brave New World
+  Description: As your fledgling society begins to grow, the need for organization
+    increases. How will your village be governed?
   MinWeek: 0
-  Choices: []
+  Choices:
+  - Constitutional Dictatorship
+  - Republic
+  - Anarchism, baby!
   HasConsequencesText: 1
   UseDynamicDescription: 0
-  isRitual: 0
+  isRitual: 1

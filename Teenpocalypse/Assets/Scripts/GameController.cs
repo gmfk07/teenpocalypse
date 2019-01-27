@@ -202,7 +202,7 @@ public class GameController : MonoBehaviour
         {
             if (e.MinWeek <= Week)
             {
-                if (!AvailableEvents.Contains(e))
+                if (!AvailableEvents.Contains(e) && (!e.isRitual || (Week == 1 && e.MinWeek <= 1)))
                     AvailableEvents.Add(e);
             }
         }
