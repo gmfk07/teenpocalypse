@@ -130,7 +130,7 @@ public class GameController : MonoBehaviour
         BuildingController bc = GetComponent<BuildingController>();
 
         if (bc.shelterAmount <= Roster.Count)
-            TeamMorale = Mathf.Min(Roster.Count - bc.shelterAmount, 0);
+            TeamMorale -= Mathf.Max(Roster.Count - bc.shelterAmount, 0);
 
 		foreach (Character character in Roster)
 		{
