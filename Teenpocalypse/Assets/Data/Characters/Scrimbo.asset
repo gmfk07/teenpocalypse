@@ -17,8 +17,10 @@ MonoBehaviour:
   WorkMultiplier: 1.1
   MaxHealth: 30
   InitialRelationship: 80
+  InitialWorkMultiplier: 1.03
   Health: 0
   Relationship: 60
   RestingWeeks: 0
+  GenerateName: 0
   Icon: {fileID: 0}
   AssignedAction: {fileID: 0}
