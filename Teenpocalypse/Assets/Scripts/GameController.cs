@@ -51,10 +51,13 @@ public class GameController : MonoBehaviour
 
     public DialogBoxController DialogBoxController;
 
+    public TextMeshProUGUI currentWeek;
+
     //Game Over objects
     public TextMeshProUGUI weeksSurvived;
     public GameObject gameOverBackground;
     public Sprite[] GameOverSprites;
+    private bool gameOver;
 
     List<RaycastResult> m_HitObjects;
 
@@ -92,7 +95,8 @@ public class GameController : MonoBehaviour
 		LoadActions();
 		LoadEvents();
 		m_HitObjects = new List<RaycastResult>();
-	}
+        currentWeek.text = "Week " + Week;
+    }
 
 	// Activated on Button Press
 	public void NextWeek()
@@ -138,6 +142,7 @@ public class GameController : MonoBehaviour
 
         if(TeamMorale <= 0)
         { GameOver(); }
+
 	}
 
 	#region Incrementing and Modifying
@@ -145,7 +150,8 @@ public class GameController : MonoBehaviour
 	public void IncrementWeek()
 	{
 		++Week;
-		LoadActions();
+        currentWeek.text = "Week " + Week;
+        LoadActions();
         LoadEvents();
 	}
 
@@ -214,6 +220,8 @@ public class GameController : MonoBehaviour
     //Ends the game!
     public void GameOver()
     {
+        gameOver = true;
+
         //Set the game over text specifying how long your player survived.
         if (Week == 1)
         {
@@ -235,6 +243,7 @@ public class GameController : MonoBehaviour
 
     public void HideGameOver()
     {
+        gameOver = false;
         gameOverBackground.SetActive(false);
         weeksSurvived.text = "";
     }
@@ -252,14 +261,16 @@ public class GameController : MonoBehaviour
         nextWeekButton.SetActive(false);
         //eventGUI.currentEvent = null;
         eventGUI.enabled = false;
-
+        currentWeek.text = "";
     }
+
     private void SetRandomGameOverMessage()
     {
         Debug.Log("Called SetRandomGameOverMessage");
         Image gameOverImage = gameOverBackground.GetComponent<Image>();
         gameOverImage.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
     }
+
 
     //Returns true if morale test succeeds, false otherwise
     public bool TestMorale(int successModifier)
