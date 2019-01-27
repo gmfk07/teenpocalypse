@@ -19,22 +19,24 @@ public class Intro : MonoBehaviour {
     public List<GameObject> texts;
     public TMP_InputField textField;
 
-    private int _state;
+    private int _state = 0;
     private bool _gotToNameScreen;
     private bool _hasNameRun;
     private bool _hasName;
-    private TextMeshProUGUI _nameText;
+    public TextMeshProUGUI nameText;
     private string _nameTextStart;
     private string _nameTextEnd;
     [HideInInspector] public string playerName;
 
     public void OnEdit() {
-        _nameText.text = _nameTextStart + textField.text + _nameTextEnd;
+        nameText.text = _nameTextStart + textField.text + _nameTextEnd;
     }
 
     public void EndEdit() {
+        if(textField.text.Length == 0) return;
         _hasName = true;
         playerName = textField.text;
+        textField.gameObject.SetActive(false);
     }
 
     private void Update() {
@@ -42,72 +44,75 @@ public class Intro : MonoBehaviour {
             _hasNameRun = false;
             switch(_state) {
                 case 0:
-                    black.SetActive(true);
-                    NextText();
-                    _state++;
-                    break;
-                case 1:
-                    johnny.SetActive(true);
-                    johnnyBG.SetActive(true);
-                    StartCoroutine(PanSlightly(johnny));
-                    NextText();
-                    _state++;
-                    break;
-                case 2:
-                    johnnyHappy.SetActive(true);
-                    johnnyHappyBG.SetActive(true);
-                    StartCoroutine(PanSlightly(johnnyHappy));
-                    NextText();
-                    _state++;
-                    break;
-                case 3:
-                    teens.SetActive(true);
-                    NextText();
-                    _state++;
-                    break;
-                case 4:
                     if(!_gotToNameScreen) {
-                        teensProtag.SetActive(true);
-                        StartCoroutine(FadeInHiglight(teensProtag, null));
+                        black.SetActive(true);
                         NextText();
-                        _nameText = texts[_state].GetComponent<TextMeshProUGUI>();
                         const string insertNameHere = "[Insert Name Here]";
-                        int i = _nameText.text.IndexOf(insertNameHere, StringComparison.Ordinal);
-                        _nameTextStart = _nameText.text.Substring(0, i);
-                        _nameTextEnd = _nameText.text.Substring(i + insertNameHere.Length,
-                                                                _nameText.text.Length - i - insertNameHere.Length);
+                        int i = nameText.text.IndexOf(insertNameHere, StringComparison.Ordinal);
+                        _nameTextStart = nameText.text.Substring(0, i);
+                        _nameTextEnd = nameText.text.Substring(i + insertNameHere.Length,
+                                                                nameText.text.Length - i - insertNameHere.Length);
                         _gotToNameScreen = true;
                     }
                     if(_hasName) {
                         _hasNameRun = true;
                         _state++;
                     }
-
+                    break;
+                case 1:
+                    black.SetActive(true);
+                    NextText();
+                    _state++;
+                    break;
+                case 2:
+                    johnny.SetActive(true);
+                    johnnyBG.SetActive(true);
+                    StartCoroutine(PanSlightly(johnny));
+                    NextText();
+                    _state++;
+                    break;
+                case 3:
+                    johnnyHappy.SetActive(true);
+                    johnnyHappyBG.SetActive(true);
+                    StartCoroutine(PanSlightly(johnnyHappy));
+                    NextText();
+                    _state++;
+                    break;
+                case 4:
+                    teens.SetActive(true);
+                    NextText();
+                    _state++;
                     break;
                 case 5:
+                    teensProtag.SetActive(true);
+                    StartCoroutine(FadeInHiglight(teensProtag, null));
+                    NextText();
+                    _state++;
+                    break;
+                case 6:
                     teensMagic.SetActive(true);
                     StartCoroutine(FadeInHiglight(teensMagic, teensProtag));
                     NextText();
                     _state++;
                     break;
-                case 6:
+                case 7:
                     teensValentino.SetActive(true);
                     StartCoroutine(FadeInHiglight(teensValentino, teensMagic));
                     NextText();
                     _state++;
                     break;
-                case 7:
+                case 8:
                     teensCrystal.SetActive(true);
                     StartCoroutine(FadeInHiglight(teensCrystal, teensValentino));
                     NextText();
                     _state++;
                     break;
-                case 8:
+                case 9:
                     StartCoroutine(FadeInHiglight(null, teensCrystal));
                     NextText();
                     _state++;
                     break;
-                case 9:
+                case 10:
                     NextText();
                     break;
             }
