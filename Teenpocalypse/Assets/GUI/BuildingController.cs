@@ -9,12 +9,12 @@ public class BuildingController : MonoBehaviour
     public int armoryAmount = 0;
 
     public int width = 200;
-    
     void OnGUI()
     {
+        int buttonx = Screen.width - width - 5;
         GameController gc = GameController.Instance;
 
-        if (GUI.Button(new Rect(5, 10, width, 30), "50 Supplies: Shelter (" + shelterAmount + ")"))
+        if (GUI.Button(new Rect(buttonx, 10, width, 30), "50 Supplies: Shelter (" + shelterAmount + ")"))
         {
             if (gc.Supplies >= 50)
             {
@@ -23,7 +23,7 @@ public class BuildingController : MonoBehaviour
             }
         }
 
-        if (GUI.Button(new Rect(5, 60, width, 30), "75 Food: Farm (" + farmAmount + ")"))
+        if (GUI.Button(new Rect(buttonx, 60, width, 30), "75 Food: Farm (" + farmAmount + ")"))
         {
             if (gc.Food >= 75)
             {
@@ -32,7 +32,7 @@ public class BuildingController : MonoBehaviour
             }
         }
 
-        if (GUI.Button(new Rect(5, 110, width, 30), "150 Supplies: Armory (" + armoryAmount + ")"))
+        if (GUI.Button(new Rect(buttonx, 110, width, 30), "150 Supplies: Armory (" + armoryAmount + ")"))
         {
             if (gc.Supplies >= 150)
             {
