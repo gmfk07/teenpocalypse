@@ -9,10 +9,12 @@ public class AdultEvent : Event
     private Character target;
     private int loss;
 
-    GameController gc = GameController.Instance;
+    
 
     public override List<string> GetChoices()
     {
+        GameController gc = GameController.Instance;
+
         List<string> result = new List<string>();
         result.Add("Fight them!");
 
@@ -23,6 +25,8 @@ public class AdultEvent : Event
 
     public override void Execute(int index)
     {
+        GameController gc = GameController.Instance;
+
         switch (index)
         {
             case 0:
@@ -58,7 +62,7 @@ public class AdultEvent : Event
                 if (success)
                     return "Adult bodies litter the ground. The village cheers!\n\nMorale: +10";
                 else
-                    return "They tore us apart. " + target.Name + "got badly injured, though no supply was taken. The village "
+                    return "They tore us apart. " + target.Name + " got badly injured, though no supply was taken. The village"
                         + " rallies around their brave fighting. Never again!"
 						+ target.Name + "'s Health: -45" + "\nMorale: +15";
 
