@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 9035680755774811887}
   - component: {fileID: 9035680755774811885}
   - component: {fileID: 1680771901}
-  - component: {fileID: 8937039468972693913}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -62,11 +61,15 @@ MonoBehaviour:
   AllActions:
   - {fileID: 11400000, guid: 96623ae88c6f0cf4b8446d10759331f2, type: 2}
   - {fileID: 11400000, guid: 649caccf7eb2c254b8904613a71e1e25, type: 2}
+  - {fileID: 11400000, guid: 135d2fdc00c1c174c80aca692ab57471, type: 2}
   AvailableActions: []
   AllEvents:
   - {fileID: 11400000, guid: 855c13b344c80a849a8f4b3a63ab20e1, type: 2}
   - {fileID: 11400000, guid: aa6f9fce767439548ad2b1e62b69f47f, type: 2}
   - {fileID: 11400000, guid: a709c8d4a3a1f654fb63d9b96c7b0e06, type: 2}
+  - {fileID: 11400000, guid: d0f0743a89aa2b74dadff41ef4d84149, type: 2}
+  - {fileID: 11400000, guid: 3c47d51aaf2b6c14383dbe832488ca51, type: 2}
+  - {fileID: 11400000, guid: 96ed72bade7c71144a93a040fa7299f0, type: 2}
   AvailableEvents: []
   StartingRoster:
   - {fileID: 11400000, guid: 00207cd1054bc53469b1eda1013d7884, type: 2}
@@ -89,7 +92,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a0e5431420578da49b5f641145f8bf6f, type: 3}
   clickSound: {fileID: 8300000, guid: b9aba3fa60f4f1542a11a7c5462f656b, type: 3}
   clockTickSound: {fileID: 8300000, guid: 112c2e126b74fde4c86fc4e3939039c9, type: 3}
-  gameOverSound: {fileID: 8300000, guid: 31c4752b0956f6144bf7640b1f9e5739, type: 3}
+  gameOverSound: {fileID: 8300000, guid: a854b3b99a7689a4882da38a2fb548d4, type: 3}
   newActionAvailableSound: {fileID: 8300000, guid: 41de40799aec8ee4d85f8389770a0db9,
     type: 3}
 --- !u!114 &9035680755774811885
@@ -106,22 +109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentEvent: {fileID: 0}
 --- !u!114 &1680771901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9035680755774811886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82a9e304ae359ab478190337a1babb2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shelterAmount: 2
-  farmAmount: 0
-  armoryAmount: 0
-  width: 200
---- !u!114 &8937039468972693913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

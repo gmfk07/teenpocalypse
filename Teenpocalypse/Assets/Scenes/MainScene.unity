@@ -4615,75 +4615,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: AllEvents.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: AllActions.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: currentWeek
-      value: 
-      objectReference: {fileID: 1520161235}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: weeksSurvived
-      value: 
-      objectReference: {fileID: 1840185399}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: gameOverBackground
-      value: 
-      objectReference: {fileID: 1778790912}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: clickSound
-      value: 
-      objectReference: {fileID: 8300000, guid: b9aba3fa60f4f1542a11a7c5462f656b, type: 3}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: clockTickSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 112c2e126b74fde4c86fc4e3939039c9, type: 3}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: gameOverSound
-      value: 
-      objectReference: {fileID: 8300000, guid: a854b3b99a7689a4882da38a2fb548d4, type: 3}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: newActionAvailableSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 41de40799aec8ee4d85f8389770a0db9, type: 3}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: AllEvents.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: d0f0743a89aa2b74dadff41ef4d84149,
-        type: 2}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: AllEvents.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: 3c47d51aaf2b6c14383dbe832488ca51,
-        type: 2}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: AllEvents.Array.data[5]
-      value: 
-      objectReference: {fileID: 11400000, guid: 96ed72bade7c71144a93a040fa7299f0,
-        type: 2}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: AllActions.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 135d2fdc00c1c174c80aca692ab57471,
-        type: 2}
     - target: {fileID: 9035680755774811884, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4739,6 +4670,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8937039468972693913, guid: 6855f9805a4a35e46844b69653f4d67d, type: 3}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: currentWeek
+      value: 
+      objectReference: {fileID: 1520161235}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: weeksSurvived
+      value: 
+      objectReference: {fileID: 1840185399}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: gameOverBackground
+      value: 
+      objectReference: {fileID: 1778790912}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6855f9805a4a35e46844b69653f4d67d, type: 3}
