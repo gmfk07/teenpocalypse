@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d75bafb142c66484d88b92b16e918924, type: 3}
-  m_Name: Loveable Jock
+  m_Name: Valentino
   m_EditorClassIdentifier: 
-  Name: Benjamin
-  Bio: Raymond likes pineapples
-  WorkMultiplier: 0.5
-  MaxHealth: 90
-  InitialRelationship: 35
-  InitialWorkMultiplier: 1
-  Health: 42
-  Relationship: 4
+  Name: Valentino
+  Bio: Valentino exists and lives in a society
+  WorkMultiplier: 0.9
+  MaxHealth: 85
+  InitialRelationship: 30
+  InitialWorkMultiplier: 0.9
+  Health: 0
+  Relationship: 0
   RestingWeeks: 0
   GenerateName: 0
-  Icon: {fileID: 2800000, guid: 97c609ab83f329949bb1a4faed81f4c6, type: 3}
+  Icon: {fileID: 2800000, guid: 1c861c5688969dd4fa6ae98f53e4538d, type: 3}
   AssignedAction: {fileID: 0}

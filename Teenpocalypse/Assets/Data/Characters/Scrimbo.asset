@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d75bafb142c66484d88b92b16e918924, type: 3}
   m_Name: Scrimbo
   m_EditorClassIdentifier: 
-  Name: Scrimbo
-  Bio: Scrimbo's weird.
-  WorkMultiplier: 1.2
+  Name: Beverly
+  Bio: Scott likes pineapples
+  WorkMultiplier: 1.1
   MaxHealth: 30
   InitialRelationship: 80
+  InitialWorkMultiplier: 0.9
   Health: 0
-  Relationship: 0
+  Relationship: 60
   RestingWeeks: 0
-  Icon: {fileID: 0}
+  GenerateName: 0
+  Icon: {fileID: 2800000, guid: 3da6ba6eef64dc24da828dba8a808f98, type: 3}
   AssignedAction: {fileID: 0}

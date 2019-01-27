@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d75bafb142c66484d88b92b16e918924, type: 3}
   m_Name: Grumpy Nerd
   m_EditorClassIdentifier: 
-  Name: Bye Kyle
-  Bio: Redefines the meaning of Bye Bye
+  Name: Stephen
+  Bio: Samuel likes pineapples
+  WorkMultiplier: 0.9
   MaxHealth: 50
   InitialRelationship: 45
-  Health: 90
-  Relationship: 35
-  Icon: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
-  AssignedAction: {fileID: 0}
+  InitialWorkMultiplier: 1.1
+  Health: 50
+  Relationship: 45
+  RestingWeeks: 0
+  GenerateName: 0
+  Icon: {fileID: 2800000, guid: 3da6ba6eef64dc24da828dba8a808f98, type: 3}
+  AssignedAction: {fileID: 11400000, guid: 96623ae88c6f0cf4b8446d10759331f2, type: 2}

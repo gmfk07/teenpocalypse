@@ -7,14 +7,16 @@ public class Character : ScriptableObject
 	public string Name = "Bill";
 	[TextArea(4, 20)]
 	public string Bio = "Bill likes pineapples";
-    public float WorkMultiplier = 1;
+    [HideInInspector] public float WorkMultiplier = 1;
 	[Range(0, Constants.MAX_VALUE)] public int MaxHealth;
 	[Range(0, Constants.MAX_VALUE)] public int InitialRelationship;
+	[Range(0.5f, 1.5f)] public float InitialWorkMultiplier = 1;
 
 	[HideInInspector] public int Health;
 	[HideInInspector] public int Relationship;
     public int RestingWeeks = 0;
 	public bool IsResting { get { return RestingWeeks > 0; } }
+	public bool GenerateName = false;
 
 	public Texture Icon;
 	public GameObject Sprite;
@@ -22,12 +24,16 @@ public class Character : ScriptableObject
 	
 	public void Init()
 	{
-        NameGenerator newName = new NameGenerator();
-        Name = newName.GetNewName();
-        Bio = newName.GetNewName() + " likes pineapples";
+		if (GenerateName)
+		{
+			NameGenerator newName = new NameGenerator();
+			Name = newName.GetNewName();
+			Bio = newName.GetNewName() + " likes pineapples";
+		}
         Health = MaxHealth;
 		Relationship = InitialRelationship;
 		AssignedAction = null;
+		WorkMultiplier = InitialWorkMultiplier;
 		GameController.Instance.Event_OnWeekStart += OnWeekStart;
 	}
 
