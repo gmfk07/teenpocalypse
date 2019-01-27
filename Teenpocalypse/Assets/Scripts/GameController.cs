@@ -25,7 +25,8 @@ public class GameController : MonoBehaviour
 	[Range(0, Constants.MAX_VALUE)]
 	public int TeamMorale = 50;
     public float DefenseMultiplier = 1;
-    public int CharactersOnDefense = 0;
+
+    public List<Character> OnDefense = new List<Character>();
 
 	public List<Action> AllActions;
 	[HideInInspector] public List<Action> AvailableActions;
@@ -147,7 +148,7 @@ public class GameController : MonoBehaviour
         {
 			Event e = AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)];
 			e.Chosen();
-			DialogBoxController.ShowBox();
+			DialogBoxController.ShowBox(e);
         }
         else
         {
@@ -165,7 +166,7 @@ public class GameController : MonoBehaviour
 	{
 		++Week;
         currentWeek.text = "Week " + Week;
-        CharactersOnDefense = 0;
+        OnDefense.Clear();
         LoadActions();
         LoadEvents();
 	}
@@ -295,7 +296,7 @@ public class GameController : MonoBehaviour
 
     public bool TestDefense(float difficulty)
     {
-        if (CharactersOnDefense * DefenseMultiplier >= difficulty)
+        if (OnDefense.Count * DefenseMultiplier >= difficulty)
             return true;
         return false;
     }

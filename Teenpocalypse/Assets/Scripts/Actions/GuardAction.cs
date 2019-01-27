@@ -11,6 +11,6 @@ public class GuardAction : Action
 
     public override void Execute(Character actionTaker)
     {
-        GameController.Instance.CharactersOnDefense ++;
+        GameController.Instance.OnDefense.Add(actionTaker);
     }
 }
