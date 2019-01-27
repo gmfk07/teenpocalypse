@@ -14,6 +14,8 @@ public class ActionPanelController : MonoBehaviour
     void Start()
     {
 		GameController.Instance.Event_OnWeekStart += OnWeekStart;
+		GameController.Instance.Event_OnActionAdded += OnActionChanged;
+		GameController.Instance.Event_OnActionRemoved += OnActionChanged;
 
 		CreateActionPanels();
     }
@@ -35,14 +37,35 @@ public class ActionPanelController : MonoBehaviour
 		}
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	void DeleteActionPanels()
+	{
+		if (actionPanels == null || actionPanels.Count == 0)
+			return;
+		foreach (ActionPanel panel in actionPanels)
+		{
+			Destroy(panel.gameObject);
+		}
+		actionPanels.Clear();
+	}
+
+	void ResetCharacterPanels()
+	{
+		DeleteActionPanels();
+		CreateActionPanels();
+	}
+
+	void OnActionChanged(Action action)
+	{
+		ResetCharacterPanels();
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+	}
 
 	void OnWeekStart()
 	{
-
+		ResetCharacterPanels();
 	}
 }

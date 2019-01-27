@@ -39,6 +39,11 @@ public class GameController : MonoBehaviour
 	public delegate void OnCharacterAdded(Character character);
 	public OnCharacterAdded Event_OnCharacterAdded;
 
+	public delegate void OnActionAdded(Action action);
+	public OnActionAdded Event_OnActionAdded;
+	public delegate void OnActionRemoved(Action action);
+	public OnActionRemoved Event_OnActionRemoved;
+
 	public Character SelectedCharacter;
 	public Action SelectedAction;
 
@@ -133,7 +138,7 @@ public class GameController : MonoBehaviour
 		// Adding new actions
 		foreach (Action action in AllActions)
 		{
-			if (action.MinWeek <= Week)
+			if (action.MinWeek >= Week)
 			{
 				if (!AvailableActions.Contains(action))
 					AvailableActions.Add(action);
@@ -176,6 +181,17 @@ public class GameController : MonoBehaviour
 	{
 		Roster.Remove(character);
 		Event_OnCharacterRemoved(character);
+	}
+	public void AddAction(Action action)
+	{
+		action.Init();
+		AvailableActions.Add(action);
+		Event_OnActionAdded?.Invoke(action);
+	}
+	public void RemoveAction(Action action)
+	{
+		AvailableActions.Remove(action);
+		Event_OnActionRemoved(action);
 	}
 	#endregion
 
