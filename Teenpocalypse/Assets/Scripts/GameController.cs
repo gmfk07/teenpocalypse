@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour
     public int RestRelationshipIncrease = 1;
 	[Range(0, Constants.MAX_VALUE)]
 	public int TeamMorale = 50;
+    public float DefenseMultiplier = 1;
+    public int CharactersOnDefense = 0;
 
 	public List<Action> AllActions;
 	[HideInInspector] public List<Action> AvailableActions;
@@ -49,7 +51,7 @@ public class GameController : MonoBehaviour
 	public Character SelectedCharacter;
 	public Action SelectedAction;
 
-    public DialogBoxController dialogBoxController;
+    public DialogBoxController DialogBoxController;
 
     public TextMeshProUGUI currentWeek;
 
@@ -125,6 +127,11 @@ public class GameController : MonoBehaviour
             Food -= foodNeeded;
         }
 
+        BuildingController bc = GetComponent<BuildingController>();
+
+        if (bc.shelterAmount <= Roster.Count)
+            TeamMorale = Mathf.Min(Roster.Count - bc.shelterAmount, 0);
+
 		foreach (Character character in Roster)
 		{
 			if (character.AssignedAction != null)
@@ -138,7 +145,7 @@ public class GameController : MonoBehaviour
 		}
         if (AvailableEvents.Count > 0)
         {
-            dialogBoxController.ShowBox(AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)]);
+			DialogBoxController.ShowBox(AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)]);
         }
         else
         {
@@ -283,6 +290,13 @@ public class GameController : MonoBehaviour
             return true;
         return false;
     }
+
+    public bool TestDefense(float difficulty)
+    {
+        if (CharactersOnDefense * DefenseMultiplier >= difficulty)
+            return true;
+        return false;
+    }
 	#region Mouse Handling
 	void OnMouseClicked()
 	{
@@ -323,7 +337,7 @@ public class GameController : MonoBehaviour
 
 	List<GameObject> ClickAndGetResults()
 	{
-		if (dialogBoxController.IsShowing)
+		if (DialogBoxController.IsShowing)
 			return null;
 
 		var pointer = new PointerEventData(EventSystem.current);
@@ -352,4 +366,14 @@ public class GameController : MonoBehaviour
 	}
 
 	#endregion
+
+    public void ChangeFood(int delta)
+    {
+        Food = Mathf.Max(Food + delta, 0);
+    }
+
+    public void ChangeSupplies(int delta)
+    {
+        Supplies = Mathf.Max(Supplies + delta, 0);
+    }
 }
