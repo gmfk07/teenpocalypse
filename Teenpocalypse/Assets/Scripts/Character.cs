@@ -16,7 +16,8 @@ public class Character : ScriptableObject
 	[HideInInspector] public int Health;
 	//[HideInInspector] public int Energy;
 	[HideInInspector] public int Relationship;
-	//[HideInInspector] public int Morale;
+    //[HideInInspector] public int Morale;
+    public int RestingWeeks = 0;
 
 	public Texture Icon;
 	[HideInInspector] public Action AssignedAction;

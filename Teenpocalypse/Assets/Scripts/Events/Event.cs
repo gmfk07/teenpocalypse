@@ -10,6 +10,7 @@ public abstract class Event : ScriptableObject
     public List<string> Choices;
 	public bool HasConsequencesText = true;
 	public bool UseDynamicDescription = false;
+    public bool isRitual = false;
 
     public abstract void Execute(int choice);
 	public virtual string GetDescription()

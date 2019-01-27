@@ -36,7 +36,7 @@ public class DialogBoxController : MonoBehaviour
 
         for (int i=0; i<currentEvent.Choices.Count; i++)
         {
-            if (GUI.Button(new Rect(5, 150 + 25*i, width - 10, 20), currentEvent.GetChoices()[i]))
+            if (GUI.Button(new Rect(5, 170 + 20*i, width - 10, 20), currentEvent.GetChoices()[i]))
             {
                 currentEvent.Execute(i);
 				choiceChosen = i;

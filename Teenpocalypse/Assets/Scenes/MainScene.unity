@@ -4621,6 +4621,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
+      propertyPath: AllEvents.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
       propertyPath: currentWeek
       value: 
       objectReference: {fileID: 1520161235}
@@ -4654,6 +4659,12 @@ PrefabInstance:
       propertyPath: newActionAvailableSound
       value: 
       objectReference: {fileID: 8300000, guid: 41de40799aec8ee4d85f8389770a0db9, type: 3}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: AllEvents.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: d0f0743a89aa2b74dadff41ef4d84149,
+        type: 2}
     - target: {fileID: 9035680755774811884, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
       propertyPath: m_LocalPosition.x

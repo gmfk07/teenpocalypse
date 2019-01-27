@@ -9,15 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0227af32564b1a247b1e2363e5bbb529, type: 3}
-  m_Name: Feast Event
+  m_Script: {fileID: 11500000, guid: a926bced1adc5fb43bf5a0f521bdf655, type: 3}
+  m_Name: Depression Event
   m_EditorClassIdentifier: 
-  Name: Feast
-  Description: The village is abuzz with the idea of a feast to celebrate our progress.
-    Can you afford to gorge yourselves?
+  Name: A Depressive Episode
+  Description: 
   MinWeek: 0
   Choices:
-  - Yes, let's feast!
-  - No, we must conserve our food.
+  - Grant them a break.
+  - We're all struggling. No breaks.
   HasConsequencesText: 1
-  UseDynamicDescription: 0
+  UseDynamicDescription: 1
+  ChosenCharacter: {fileID: 0}
+  OtherCharacters: []
