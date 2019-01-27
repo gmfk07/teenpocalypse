@@ -12,6 +12,7 @@ public class CharacterPanel : MonoBehaviour
 	public TextMeshProUGUI characterActionText;
 	public TextMeshProUGUI characterHealthText;
 	public TextMeshProUGUI characterRelationshipText;
+	public TextMeshProUGUI characterWorkMultiplierText;
 	public RawImage characterImageUI;
 	public Texture characterPicture;
 
@@ -42,6 +43,10 @@ public class CharacterPanel : MonoBehaviour
 				characterActionText.text = character.AssignedAction.Name;
 			else
 				characterActionText.text = "";
+		}
+		if (characterWorkMultiplierText != null)
+		{
+			characterWorkMultiplierText.text = "Work Multiplier: " + character.WorkMultiplier.ToString();
 		}
 	}
 
