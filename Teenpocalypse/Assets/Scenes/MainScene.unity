@@ -1052,6 +1052,7 @@ MonoBehaviour:
   soundEffectsSource: {fileID: 364621352}
   musicSource: {fileID: 364621353}
   campfireSoundSource: {fileID: 364621356}
+  wavesSoundSource: {fileID: 0}
 --- !u!4 &364621355
 Transform:
   m_ObjectHideFlags: 0
@@ -4618,7 +4619,7 @@ PrefabInstance:
     - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
       propertyPath: AllActions.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
@@ -4713,5 +4714,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1680771901, guid: 6855f9805a4a35e46844b69653f4d67d, type: 3}
+      propertyPath: width
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680771901, guid: 6855f9805a4a35e46844b69653f4d67d, type: 3}
+      propertyPath: farmAction
+      value: 
+      objectReference: {fileID: 11400000, guid: 72283ab364c8b1241912305043cf8526,
+        type: 2}
+    - target: {fileID: 1680771901, guid: 6855f9805a4a35e46844b69653f4d67d, type: 3}
+      propertyPath: recruitAction
+      value: 
+      objectReference: {fileID: 11400000, guid: a98e98b6c28ef6a4f92ce206409ef5eb,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6855f9805a4a35e46844b69653f4d67d, type: 3}

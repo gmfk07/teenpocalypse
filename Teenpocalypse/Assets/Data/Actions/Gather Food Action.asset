@@ -15,6 +15,6 @@ MonoBehaviour:
   Name: Gather Food
   Description: Send someone to gather food
   MinWeek: 0
-  InitialSlots: 1
+  InitialSlots: 3
   AssignedCharacters: []
   Slots: 1
