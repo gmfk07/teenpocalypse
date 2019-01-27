@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ResourceList : MonoBehaviour
 {
-    private Text textField;
+    public TextMeshProUGUI textField;
 
     private void Start()
     {
-        textField = GetComponent<Text>();
+        //textField = GetComponent<TextMeshProUGUI>();
     }
 
     private void OnGUI()
