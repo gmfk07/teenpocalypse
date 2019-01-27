@@ -2615,8 +2615,8 @@ MonoBehaviour:
   johnnyHappyBG: {fileID: 1653913397}
   teens: {fileID: 549203369}
   teensProtag: {fileID: 1802558431}
-  teensMagic: {fileID: 1593170213}
-  teensValentino: {fileID: 1785678874}
+  teensMagic: {fileID: 1785678874}
+  teensValentino: {fileID: 1593170213}
   teensCrystal: {fileID: 477154227}
   texts:
   - {fileID: 1332327950}
