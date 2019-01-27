@@ -34,6 +34,7 @@ public class CharacterPanel : MonoBehaviour
 			c.r -= 0.5f; c.g -= 0.5f; c.b -= 0.5f;
 			characterImageUI.color = c;
 			characterActionText.text = "Resting: " + character.RestingWeeks + " Weeks Left";
+		    character.AssignedAction = null;
 		}
 		else
 		{

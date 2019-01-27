@@ -3707,6 +3707,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2133359207 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 407032833985463201, guid: 85d1966dcbb942f4eb88cb290099c5de,
+    type: 3}
+  m_PrefabInstance: {fileID: 407032834006058039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &407032834006058039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3909,6 +3915,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f3d63920fdb9329499cfab2cc8c021ad,
         type: 2}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: nextWeekButton
+      value: 
+      objectReference: {fileID: 2133359207}
     - target: {fileID: 9035680755774811884, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
       propertyPath: m_LocalPosition.x

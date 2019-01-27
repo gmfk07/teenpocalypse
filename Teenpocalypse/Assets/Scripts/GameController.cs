@@ -11,6 +11,7 @@ using Random = UnityEngine.Random; //For randomizing game over screen image.
 public class GameController : MonoBehaviour
 {
     public DayNightFilter dayNightFilter;
+    public GameObject nextWeekButton;
 
 	public static GameController Instance = null;
 	// Data currently exposed for debugging purposes
@@ -135,6 +136,7 @@ public class GameController : MonoBehaviour
     public void DialogBoxGone() { dialogBoxGone = true; }
 
     private IEnumerator TheTimesTheyAreAChangin() {
+        nextWeekButton.SetActive(false);
         SoundManager.instance.musicSource.Pause();
         SoundManager.instance.PlaySingle(timePassingSound);
 
@@ -192,11 +194,13 @@ public class GameController : MonoBehaviour
             currentWeek.text = $"Week {Week} Day {1 + Mathf.FloorToInt(7 - timeLeft)}";
         }
         isTicking = false;
-        currentWeek.text = "Week " + Week;
+        currentWeek.text = $"Week {Week + 1}";
 
         if(TeamMorale <= 0) { GameOver(); }
 
         SoundManager.instance.musicSource.UnPause();
+        nextWeekButton.SetActive(true);
+        IncrementWeek();
     }
 
     private void PickEvent(List<Event> weekEvents) {
@@ -220,7 +224,6 @@ public class GameController : MonoBehaviour
                 {
 					character.AssignedAction.AssignedCharacters.Remove(character);
 					character.AssignedAction.Execute(character);
-                    character.AssignedAction = null;
                 }
                 else
                 {
