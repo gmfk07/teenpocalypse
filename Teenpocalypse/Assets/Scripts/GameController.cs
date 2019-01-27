@@ -287,8 +287,11 @@ public class GameController : MonoBehaviour
 
     private void SetRandomGameOverMessage()
     {
-        Image gameOverImage = gameOverBackground.GetComponent<Image>();
-        gameOverImage.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
+        //Image gameOverImage = gameOverBackground.GetComponent<Image>();
+        //gameOverImage.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
+
+        SpriteRenderer gameOverSpriteRenderer = gameOverBackground.GetComponent<SpriteRenderer>();
+        gameOverSpriteRenderer.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
     }
 
     public void ResetGame()
