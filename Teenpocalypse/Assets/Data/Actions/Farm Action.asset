@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44705c45a69913b4b86160638067c3d3, type: 3}
-  m_Name: Gather Materials
+  m_Script: {fileID: 11500000, guid: 658bf0d4a37816f4d9fd2e07a7db716d, type: 3}
+  m_Name: Farm Action
   m_EditorClassIdentifier: 
-  Name: Gather Materials
-  Description: To build stuff!
+  Name: Farm
+  Description: Strike the earth!
   MinWeek: 0
-  InitialSlots: 3
+  InitialSlots: 1
   AssignedCharacters: []
-  Slots: 1
+  Slots: 0

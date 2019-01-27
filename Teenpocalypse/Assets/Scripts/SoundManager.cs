@@ -31,7 +31,7 @@ public class SoundManager : MonoBehaviour
 
 
     //Randomize from a set of sound effects.
-    public void RandomizeSfx(params AudioClip[] clips)
+    public void RandomizeSFX(params AudioClip[] clips)
     {
         int randomIndex = Random.Range(0, clips.Length);
 
@@ -39,4 +39,15 @@ public class SoundManager : MonoBehaviour
 
         soundEffectsSource.Play();
     }
+
+    public void PauseSFX()
+    {
+        soundEffectsSource.Pause();
+    }
+
+    public void ResumeSFX()
+    {
+        soundEffectsSource.UnPause();
+    }
+
 }

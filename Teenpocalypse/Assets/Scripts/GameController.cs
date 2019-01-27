@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour
 
     //Game Over objects
     public TextMeshProUGUI weeksSurvived;
+    public GameObject playAgainButton;
     public GameObject gameOverBackground;
     public Sprite[] GameOverSprites;
     private bool gameOver;
@@ -72,6 +73,8 @@ public class GameController : MonoBehaviour
     public AudioClip clockTickSound;
     public AudioClip gameOverSound;
     public AudioClip newActionAvailableSound;
+    public AudioClip buildingSound;
+    public AudioClip timePassingSound;
 
     List<RaycastResult> m_HitObjects;
 
@@ -322,15 +325,17 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         gameOver = true;
+        weeksSurvived.enabled = false;
+        playAgainButton.SetActive(false);
 
         //Set the game over text specifying how long your player survived.
         if (Week == 1)
         {
-            weeksSurvived.text = "You survived " + Week + " week.";
+            weeksSurvived.text = "You survived " + Week + " week";
         }
         else
         {
-            weeksSurvived.text = "You survived " + Week + " weeks.";
+            weeksSurvived.text = "You survived " + Week + " weeks";
         }
 
         //Hide the normal player GUI and controls
@@ -341,10 +346,10 @@ public class GameController : MonoBehaviour
         //Set the Game Over Image with a Random fail message, and then show the image
         gameOverSpriteRenderer.sprite = GetRandomGameOverMessage();
 
-        Debug.Log("Activate game over background");
-        weeksSurvived.color = new Color(weeksSurvived.color.r, weeksSurvived.color.g, weeksSurvived.color.b, 1f);
         gameOverBackground.SetActive(true);
-        StartCoroutine(FadeIn(gameOverBackground));
+
+        StartCoroutine(FadeIn(gameOverBackground, 3.5f));
+        StartCoroutine(LoadGameOverGUI(4));
         SoundManager.instance.PlaySingle(gameOverSound);
     }
 
@@ -353,6 +358,7 @@ public class GameController : MonoBehaviour
         gameOver = false;
         gameOverBackground.SetActive(false);
         weeksSurvived.text = "";
+        playAgainButton.SetActive(false);
     }
 
     public void HideControls()
@@ -373,7 +379,6 @@ public class GameController : MonoBehaviour
 
     private Sprite GetRandomGameOverMessage()
     {
-        Debug.Log("Get a random sprite");
         return GameOverSprites[Random.Range(0, GameOverSprites.Length)];
     }
 
@@ -385,9 +390,8 @@ public class GameController : MonoBehaviour
 
     }
 
-    private static IEnumerator FadeIn(GameObject newObj)
+    private static IEnumerator FadeIn(GameObject newObj, float time)
     {
-        const float time = 4;
         float timeLeft = time;
         var sprite = newObj?.GetComponent<SpriteRenderer>();
         var text = newObj?.GetComponent<TextMeshProUGUI>();
@@ -399,6 +403,13 @@ public class GameController : MonoBehaviour
             if (sprite != null) sprite.color = Color.Lerp(Color.clear, Color.white, (time - timeLeft) / time);
             yield return null;
         }
+    }
+
+    IEnumerator LoadGameOverGUI(int seconds)
+    {
+        yield return new WaitForSeconds(seconds); // This statement will make the coroutine wait for the number of seconds you put there, 2 seconds in this case
+        weeksSurvived.enabled = true;
+         playAgainButton.SetActive(true);
     }
 
 
