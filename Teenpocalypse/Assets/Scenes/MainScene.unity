@@ -4835,6 +4835,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
+      propertyPath: AvailableCharacters.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: dayNightFilter
+      value: 
+      objectReference: {fileID: 519420030}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
       propertyPath: currentWeek
       value: 
       objectReference: {fileID: 1520161235}
@@ -4855,14 +4865,10 @@ PrefabInstance:
       objectReference: {fileID: 1778790912}
     - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
-      propertyPath: dayNightFilter
+      propertyPath: AvailableCharacters.Array.data[4]
       value: 
-      objectReference: {fileID: 519420030}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: timePassingSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 233908b4b312b7143a411b44ebf06534, type: 3}
+      objectReference: {fileID: 11400000, guid: f3d63920fdb9329499cfab2cc8c021ad,
+        type: 2}
     - target: {fileID: 9035680755774811884, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
       propertyPath: m_LocalPosition.x
