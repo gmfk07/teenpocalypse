@@ -65,6 +65,7 @@ public class GameController : MonoBehaviour
     //Sound Effects
     public AudioClip clickSound;
     public AudioClip clockTickSound;
+    public AudioClip gameOverSound;
 
     List<RaycastResult> m_HitObjects;
 
@@ -254,7 +255,9 @@ public class GameController : MonoBehaviour
         //Set the Game Over Image with a Random fail message, and then show the image
         SetRandomGameOverMessage();
         gameOverBackground.SetActive(true);
-        
+        SoundManager.instance.PlaySingle(gameOverSound);
+
+
     }
 
     public void HideGameOver()

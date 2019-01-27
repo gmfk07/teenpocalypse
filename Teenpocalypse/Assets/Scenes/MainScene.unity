@@ -1881,6 +1881,11 @@ PrefabInstance:
       propertyPath: clockTickSound
       value: 
       objectReference: {fileID: 8300000, guid: 112c2e126b74fde4c86fc4e3939039c9, type: 3}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: gameOverSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 31c4752b0956f6144bf7640b1f9e5739, type: 3}
     - target: {fileID: 9035680755774811884, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
       propertyPath: m_LocalPosition.x
