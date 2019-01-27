@@ -13,7 +13,6 @@ public class NameGenerator : MonoBehaviour
     public class CharacterDetails
     {
         public string name;
-        public string surname;
     }
 
     public string GetNewName()
@@ -26,7 +25,7 @@ public class NameGenerator : MonoBehaviour
         string jsonResponse = reader.ReadToEnd();
         //Debug.Log(jsonResponse);
         newCharacter = JsonUtility.FromJson<CharacterDetails>(jsonResponse);
-        newName = newCharacter.name + " " + newCharacter.surname;
+        newName = newCharacter.name;
         //Debug.Log("Name is " + newName);
         return newName;
     }
