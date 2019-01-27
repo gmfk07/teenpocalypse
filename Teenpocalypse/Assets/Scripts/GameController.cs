@@ -24,6 +24,9 @@ public class GameController : MonoBehaviour
     public int RestRelationshipIncrease = 1;
 	[Range(0, Constants.MAX_VALUE)]
 	public int TeamMorale = 50;
+    public float DefenseMultiplier = 1;
+
+    public List<Character> OnDefense = new List<Character>();
 
 	public List<Action> AllActions;
 	[HideInInspector] public List<Action> AvailableActions;
@@ -49,12 +52,20 @@ public class GameController : MonoBehaviour
 	public Character SelectedCharacter;
 	public Action SelectedAction;
 
-    public DialogBoxController dialogBoxController;
+    public DialogBoxController DialogBoxController;
+
+    public TextMeshProUGUI currentWeek;
 
     //Game Over objects
     public TextMeshProUGUI weeksSurvived;
     public GameObject gameOverBackground;
     public Sprite[] GameOverSprites;
+    private bool gameOver;
+
+    //Sound Effects
+    public AudioClip clickSound;
+    public AudioClip clockTickSound;
+    public AudioClip gameOverSound;
 
     List<RaycastResult> m_HitObjects;
 
@@ -92,11 +103,13 @@ public class GameController : MonoBehaviour
 		LoadActions();
 		LoadEvents();
 		m_HitObjects = new List<RaycastResult>();
-	}
+        currentWeek.text = "Week " + Week;
+    }
 
 	// Activated on Button Press
 	public void NextWeek()
 	{
+        SoundManager.instance.PlaySingle(clockTickSound);
         int foodNeeded = FoodPerPerson * Roster.Count;
         if (foodNeeded >= Food)
         {
@@ -116,6 +129,11 @@ public class GameController : MonoBehaviour
             Food -= foodNeeded;
         }
 
+        BuildingController bc = GetComponent<BuildingController>();
+
+        if (bc.shelterAmount <= Roster.Count)
+            TeamMorale -= Mathf.Max(Roster.Count - bc.shelterAmount, 0);
+
 		foreach (Character character in Roster)
 		{
 			if (character.AssignedAction != null)
@@ -129,7 +147,9 @@ public class GameController : MonoBehaviour
 		}
         if (AvailableEvents.Count > 0)
         {
-            dialogBoxController.ShowBox(AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)]);
+			Event e = AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)];
+			e.Chosen();
+			DialogBoxController.ShowBox(e);
         }
         else
         {
@@ -138,6 +158,7 @@ public class GameController : MonoBehaviour
 
         if(TeamMorale <= 0)
         { GameOver(); }
+
 	}
 
 	#region Incrementing and Modifying
@@ -145,7 +166,9 @@ public class GameController : MonoBehaviour
 	public void IncrementWeek()
 	{
 		++Week;
-		LoadActions();
+        currentWeek.text = "Week " + Week;
+        OnDefense.Clear();
+        LoadActions();
         LoadEvents();
 	}
 
@@ -214,6 +237,8 @@ public class GameController : MonoBehaviour
     //Ends the game!
     public void GameOver()
     {
+        gameOver = true;
+
         //Set the game over text specifying how long your player survived.
         if (Week == 1)
         {
@@ -230,11 +255,14 @@ public class GameController : MonoBehaviour
         //Set the Game Over Image with a Random fail message, and then show the image
         SetRandomGameOverMessage();
         gameOverBackground.SetActive(true);
-        
+        SoundManager.instance.PlaySingle(gameOverSound);
+
+
     }
 
     public void HideGameOver()
     {
+        gameOver = false;
         gameOverBackground.SetActive(false);
         weeksSurvived.text = "";
     }
@@ -250,21 +278,28 @@ public class GameController : MonoBehaviour
         gameActions.SetActive(false);
         guiText.SetActive(false);
         nextWeekButton.SetActive(false);
-        //eventGUI.currentEvent = null;
         eventGUI.enabled = false;
-
+        currentWeek.text = "";
     }
+
     private void SetRandomGameOverMessage()
     {
-        Debug.Log("Called SetRandomGameOverMessage");
         Image gameOverImage = gameOverBackground.GetComponent<Image>();
         gameOverImage.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
     }
+
 
     //Returns true if morale test succeeds, false otherwise
     public bool TestMorale(int successModifier)
     {
         if (UnityEngine.Random.Range(0, 100 - successModifier) <= TeamMorale)
+            return true;
+        return false;
+    }
+
+    public bool TestDefense(float difficulty)
+    {
+        if (OnDefense.Count * DefenseMultiplier >= difficulty)
             return true;
         return false;
     }
@@ -308,7 +343,7 @@ public class GameController : MonoBehaviour
 
 	List<GameObject> ClickAndGetResults()
 	{
-		if (dialogBoxController.IsShowing)
+		if (DialogBoxController.IsShowing)
 			return null;
 
 		var pointer = new PointerEventData(EventSystem.current);
@@ -337,4 +372,14 @@ public class GameController : MonoBehaviour
 	}
 
 	#endregion
+
+    public void ChangeFood(int delta)
+    {
+        Food = Mathf.Max(Food + delta, 0);
+    }
+
+    public void ChangeSupplies(int delta)
+    {
+        Supplies = Mathf.Max(Supplies + delta, 0);
+    }
 }

@@ -10,6 +10,8 @@ public class DialogBoxController : MonoBehaviour
     private bool show = false;
     private Rect windowRect;
     public Event currentEvent;
+	bool showingConsequences;
+	int choiceChosen = 0;
 
     void Start()
     {
@@ -18,24 +20,46 @@ public class DialogBoxController : MonoBehaviour
 
     void OnGUI()
     {
-        if (show)
-            windowRect = GUI.Window(0, windowRect, DialogWindow, currentEvent.name);
+		if (show)
+		{
+			if (!showingConsequences)
+				windowRect = GUI.Window(0, windowRect, DialogWindow, currentEvent.name);
+			else
+				windowRect = GUI.Window(0, windowRect, ConsequencesWindow, currentEvent.name);
+		}
     }
 
     void DialogWindow(int windowID)
     {
-        GUI.Label(new Rect(5, 25, width - 8, 250), currentEvent.Description);
+        GUI.Label(new Rect(5, 25, width - 8, 250), currentEvent.GetDescription());
 
         for (int i=0; i<currentEvent.Choices.Count; i++)
         {
-            if (GUI.Button(new Rect(5, 150 + 25*i, width - 10, 20), currentEvent.Choices[i]))
+            if (GUI.Button(new Rect(5, 150 + 25*i, width - 10, 20), currentEvent.GetChoices()[i]))
             {
                 currentEvent.Execute(i);
-                show = false;
-                GameController.Instance.IncrementWeek();
+				choiceChosen = 1;
+				if (currentEvent.HasConsequencesText)
+					showingConsequences = true;
+				else
+				{
+					show = false;
+					GameController.Instance.IncrementWeek();
+				}
             }
         }
     }
+
+	void ConsequencesWindow(int windowID)
+	{
+		GUI.Label(new Rect(5, 25, width - 8, 250), currentEvent.GetConsequencesText(choiceChosen));
+		if (GUI.Button(new Rect(5, 150, width - 10, 20), "OK"))
+		{
+			showingConsequences = false;
+			show = false;
+			GameController.Instance.IncrementWeek();
+		}
+	}
 
     public void ShowBox(Event newEvent)
     {
