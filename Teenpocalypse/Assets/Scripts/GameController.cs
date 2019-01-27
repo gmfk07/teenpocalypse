@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
 	public Character SelectedCharacter;
 	public Action SelectedAction;
 
-    public DialogBoxController dialogBoxController;
+    public DialogBoxController DialogBoxController;
 
     //Game Over objects
     public TextMeshProUGUI weeksSurvived;
@@ -129,7 +129,7 @@ public class GameController : MonoBehaviour
 		}
         if (AvailableEvents.Count > 0)
         {
-            dialogBoxController.ShowBox(AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)]);
+			DialogBoxController.ShowBox(AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)]);
         }
         else
         {
@@ -308,7 +308,7 @@ public class GameController : MonoBehaviour
 
 	List<GameObject> ClickAndGetResults()
 	{
-		if (dialogBoxController.IsShowing)
+		if (DialogBoxController.IsShowing)
 			return null;
 
 		var pointer = new PointerEventData(EventSystem.current);
