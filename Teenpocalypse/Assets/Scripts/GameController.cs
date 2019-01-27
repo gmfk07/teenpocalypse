@@ -59,6 +59,10 @@ public class GameController : MonoBehaviour
     public Sprite[] GameOverSprites;
     private bool gameOver;
 
+    //Sound Effects
+    public AudioClip clickSound;
+    public AudioClip clockTickSound;
+
     List<RaycastResult> m_HitObjects;
 
 	void Awake()
@@ -101,6 +105,7 @@ public class GameController : MonoBehaviour
 	// Activated on Button Press
 	public void NextWeek()
 	{
+        SoundManager.instance.PlaySingle(clockTickSound);
         int foodNeeded = FoodPerPerson * Roster.Count;
         if (foodNeeded >= Food)
         {
@@ -259,7 +264,6 @@ public class GameController : MonoBehaviour
         gameActions.SetActive(false);
         guiText.SetActive(false);
         nextWeekButton.SetActive(false);
-        //eventGUI.currentEvent = null;
         eventGUI.enabled = false;
         currentWeek.text = "";
     }
