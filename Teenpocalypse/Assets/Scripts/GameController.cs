@@ -136,6 +136,7 @@ public class GameController : MonoBehaviour
         if (bc.shelterAmount <= Roster.Count)
             TeamMorale -= Mathf.Max(Roster.Count - bc.shelterAmount, 0);
 
+		// Execute All Assigned Actions
 		foreach (Character character in Roster)
 		{
 			if (character.AssignedAction != null)
@@ -353,7 +354,8 @@ public class GameController : MonoBehaviour
 		{
 			if (SelectedAction)
 			{
-				characterPanel.character.AssignedAction = SelectedAction;
+				if (!characterPanel.character.IsResting)
+					characterPanel.character.AssignedAction = SelectedAction;
 			}
 		}
 		ActionPanel actionPanel = FindFirstOf<ActionPanel>(clickedOnObjects);

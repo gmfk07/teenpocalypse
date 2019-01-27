@@ -25,10 +25,18 @@ public class CharacterPanel : MonoBehaviour
     void Update()
     {
         LoadCharacterData();
-		if (character.AssignedAction != null)
-			characterActionText.text = character.AssignedAction.Name;
+		if (character.IsResting)
+		{
+			//characterImageUI.
+			characterActionText.text = "Resting: " + character.RestingWeeks + " Weeks Remaining";
+		}
 		else
-			characterActionText.text = "";
+		{
+			if (character.AssignedAction != null)
+				characterActionText.text = character.AssignedAction.Name;
+			else
+				characterActionText.text = "";
+		}
 	}
 
 	public void LoadCharacterData()
