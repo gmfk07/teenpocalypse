@@ -73,6 +73,8 @@ public class GameController : MonoBehaviour
     public AudioClip clockTickSound;
     public AudioClip gameOverSound;
     public AudioClip newActionAvailableSound;
+    public AudioClip buildingSound;
+    public AudioClip timePassingSound;
 
     List<RaycastResult> m_HitObjects;
 
@@ -277,11 +279,11 @@ public class GameController : MonoBehaviour
         //Set the game over text specifying how long your player survived.
         if (Week == 1)
         {
-            weeksSurvived.text = "You survived " + Week + " week.";
+            weeksSurvived.text = "You survived " + Week + " week";
         }
         else
         {
-            weeksSurvived.text = "You survived " + Week + " weeks.";
+            weeksSurvived.text = "You survived " + Week + " weeks";
         }
 
         //Hide the normal player GUI and controls
