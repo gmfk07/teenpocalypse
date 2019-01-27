@@ -19,6 +19,7 @@ public class Character : ScriptableObject
 	public bool GenerateName = false;
 
 	public Texture Icon;
+	public GameObject Sprite;
 	[HideInInspector] public Action AssignedAction;
 	
 	public void Init()

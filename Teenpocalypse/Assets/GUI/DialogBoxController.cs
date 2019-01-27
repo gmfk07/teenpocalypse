@@ -46,7 +46,6 @@ public class DialogBoxController : MonoBehaviour
 				{
 					show = false;
 				    GameController.Instance.DialogBoxGone();
-					GameController.Instance.IncrementWeek();
 				}
             }
         }
@@ -60,7 +59,6 @@ public class DialogBoxController : MonoBehaviour
 			showingConsequences = false;
 			show = false;
 		    GameController.Instance.DialogBoxGone();
-			GameController.Instance.IncrementWeek();
 		}
 	}
 
