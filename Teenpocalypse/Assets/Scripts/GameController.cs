@@ -242,7 +242,7 @@ public class GameController : MonoBehaviour
 		AvailableActions.Remove(action);
 		Event_OnActionRemoved(action);
 	}
-	#endregion
+    #endregion
 
     //Ends the game!
     public void GameOver()
@@ -262,12 +262,15 @@ public class GameController : MonoBehaviour
         //Hide the normal player GUI and controls
         HideControls();
 
+        SpriteRenderer gameOverSpriteRenderer = gameOverBackground.GetComponent<SpriteRenderer>();
+
         //Set the Game Over Image with a Random fail message, and then show the image
-        SetRandomGameOverMessage();
+        gameOverSpriteRenderer.sprite = GetRandomGameOverMessage();
+
+        Debug.Log("Activate game over background");
         gameOverBackground.SetActive(true);
+        StartCoroutine(FadeIn(gameOverBackground));
         SoundManager.instance.PlaySingle(gameOverSound);
-
-
     }
 
     public void HideGameOver()
@@ -279,7 +282,7 @@ public class GameController : MonoBehaviour
 
     public void HideControls()
     {
-        GameObject gameplayScreen= GameObject.Find("GameplayScreen");
+        GameObject gameplayScreen = GameObject.Find("GameplayScreen");
         DialogBoxController eventGUI = GameObject.Find("GameController").GetComponent<DialogBoxController>();
         BuildingController[] buildGUIs = GameObject.Find("GameController").GetComponents<BuildingController>();
         eventGUI.enabled = false;
@@ -293,13 +296,10 @@ public class GameController : MonoBehaviour
         currentWeek.text = "";
     }
 
-    private void SetRandomGameOverMessage()
+    private Sprite GetRandomGameOverMessage()
     {
-        //Image gameOverImage = gameOverBackground.GetComponent<Image>();
-        //gameOverImage.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
-
-        SpriteRenderer gameOverSpriteRenderer = gameOverBackground.GetComponent<SpriteRenderer>();
-        gameOverSpriteRenderer.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
+        Debug.Log("Get a random sprite");
+        return GameOverSprites[Random.Range(0, GameOverSprites.Length)];
     }
 
     public void ResetGame()
@@ -309,6 +309,21 @@ public class GameController : MonoBehaviour
         rm.RestartGameController();
 
     }
+
+    private static IEnumerator FadeIn(GameObject newObj)
+    {
+        const float time = 1;
+        float timeLeft = time;
+        var sprite = newObj?.GetComponent<SpriteRenderer>();
+
+        while (timeLeft > 0)
+        {
+            timeLeft -= Time.deltaTime;
+            if (sprite != null) sprite.color = Color.Lerp(Color.clear, Color.white, (time - timeLeft) / time);
+            yield return null;
+        }
+    }
+
 
     //Returns true if morale test succeeds, false otherwise
     public bool TestMorale(int successModifier)
