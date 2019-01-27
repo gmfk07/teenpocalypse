@@ -18,7 +18,6 @@ public class BearEvent : Event
                 if (gc.TestDefense(1))
                 {
                     success = true;
-					target.ChangeHealthWithDeletion(-5);
 				}
                 else
                 {

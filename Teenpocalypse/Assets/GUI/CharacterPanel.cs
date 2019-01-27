@@ -15,10 +15,13 @@ public class CharacterPanel : MonoBehaviour
 	public RawImage characterImageUI;
 	public Texture characterPicture;
 
+	Color originalColor;
+
 	// Start is called before the first frame update
 	void Start()
     {
 		LoadCharacterData();
+		originalColor = characterImageUI.color;
 	}
 
     // Update is called once per frame
@@ -27,11 +30,14 @@ public class CharacterPanel : MonoBehaviour
         LoadCharacterData();
 		if (character.IsResting)
 		{
-			//characterImageUI.
-			characterActionText.text = "Resting: " + character.RestingWeeks + " Weeks Remaining";
+			Color c = originalColor;
+			c.r -= 0.5f; c.g -= 0.5f; c.b -= 0.5f;
+			characterImageUI.color = c;
+			characterActionText.text = "Resting: " + character.RestingWeeks + " Weeks Left";
 		}
 		else
 		{
+			characterImageUI.color = originalColor;
 			if (character.AssignedAction != null)
 				characterActionText.text = character.AssignedAction.Name;
 			else
