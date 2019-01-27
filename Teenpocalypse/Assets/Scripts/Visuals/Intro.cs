@@ -28,8 +28,18 @@ public class Intro : MonoBehaviour {
     private string _nameTextEnd;
     [HideInInspector] public string playerName;
 
+    //Intro Music
+    public AudioClip introMusicPart1;
+    public AudioClip introMusicPart2;
+
     public void OnEdit() {
         nameText.text = _nameTextStart + textField.text + _nameTextEnd;
+    }
+
+    IEnumerator waitForIntoMusic(float seconds)
+    {
+        yield return new WaitForSeconds(seconds); // This statement will make the coroutine wait for the number of seconds you put there, 2 seconds in this case
+        SoundManager.instance.musicSource.UnPause();
     }
 
     public void EndEdit() {
@@ -60,6 +70,7 @@ public class Intro : MonoBehaviour {
                     }
                     break;
                 case 1:
+                    StartIntroMusic();
                     black.SetActive(true);
                     NextText();
                     _state++;
@@ -148,8 +159,19 @@ public class Intro : MonoBehaviour {
             yield return null;
         }
         oldObj?.SetActive(false);
-        if(text == null)
+        if (text == null)
+        {
+            Destroy(GameObject.Find("SoundController"));
             SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+        }
+    }
+
+    private void StartIntroMusic()
+    {
+        SoundManager.instance.musicSource.Pause();
+        SoundManager.instance.soundEffectsSource.PlayOneShot(introMusicPart1);
+        waitForIntoMusic(20);
+        SoundManager.instance.musicSource.UnPause();
     }
 
     private static IEnumerator FadeInHiglight(GameObject newObj, GameObject oldObj) {

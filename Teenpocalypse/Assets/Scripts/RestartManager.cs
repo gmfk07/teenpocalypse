@@ -8,4 +8,9 @@ public class RestartManager : MonoBehaviour
     {
         Destroy(GameObject.Find("GameController"));
     }
+
+    public void RestartSoundController()
+    {
+        Destroy(GameObject.Find("SoundController"));
+    }
 }
