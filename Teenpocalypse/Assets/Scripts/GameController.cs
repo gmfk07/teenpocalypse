@@ -320,7 +320,6 @@ public class GameController : MonoBehaviour
 
     private Sprite GetRandomGameOverMessage()
     {
-        Debug.Log("Get a random sprite");
         return GameOverSprites[Random.Range(0, GameOverSprites.Length)];
     }
 
