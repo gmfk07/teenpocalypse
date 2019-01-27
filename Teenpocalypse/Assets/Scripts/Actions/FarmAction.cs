@@ -11,6 +11,6 @@ public class FarmAction : Action
 
 	public override void Execute(Character actionTaker)
 	{
-		GameController.Instance.Food += (int)Mathf.Round(18 * actionTaker.WorkMultiplier);
+		GameController.Instance.Food += (int)Mathf.Round(10 * actionTaker.WorkMultiplier);
     }
 }
