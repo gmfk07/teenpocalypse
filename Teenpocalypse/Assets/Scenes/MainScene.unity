@@ -4840,6 +4840,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
+      propertyPath: StartingRoster.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
       propertyPath: dayNightFilter
       value: 
       objectReference: {fileID: 519420030}
@@ -4869,6 +4874,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f3d63920fdb9329499cfab2cc8c021ad,
         type: 2}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: StartingRoster.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: fc6af6b94c9afbd469e3d452c6a329df,
+        type: 2}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: StartingRoster.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2018d109cd2b7cc4c8a8058774e683b8,
+        type: 2}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: StartingRoster.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2b91a73f151db0a498f8ae6664eae861,
+        type: 2}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: Food
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 9035680755774811884, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
       propertyPath: m_LocalPosition.x
