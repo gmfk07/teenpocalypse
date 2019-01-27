@@ -27,6 +27,8 @@ public class GameController : MonoBehaviour
 	public int TeamMorale = 50;
     public float DefenseMultiplier = 1;
 
+    public List<Character> AvailableCharacters;
+
     public List<Character> OnDefense = new List<Character>();
 
 	public List<Action> AllActions;
@@ -111,59 +113,65 @@ public class GameController : MonoBehaviour
 	// Activated on Button Press
 	public void NextWeek()
 	{
-        SoundManager.instance.PlaySingle(clockTickSound);
-        int foodNeeded = FoodPerPerson * Roster.Count;
-        if (foodNeeded >= Food)
+        if (!DialogBoxController.IsShowing)
         {
-            List<Character> toBeRemoved = new List<Character>();
+            SoundManager.instance.PlaySingle(clockTickSound);
+            int foodNeeded = FoodPerPerson * Roster.Count;
+            if (foodNeeded >= Food)
+            {
+                List<Character> toBeRemoved = new List<Character>();
+                foreach (Character character in Roster)
+                {
+                    if (!character.ChangeHealth(-StarveHealthDecrease * ((foodNeeded - Food) / foodNeeded)) ||
+                        !character.ChangeRelationship(-StarveRelationshipDecrease * ((foodNeeded - Food) / foodNeeded)))
+                        toBeRemoved.Add(character);
+                }
+                foreach (Character character in toBeRemoved)
+                {
+                    RemoveCharacter(character);
+                }
+                Food = 0;
+            }
+            else
+            {
+                Food -= foodNeeded;
+            }
+
+            BuildingController bc = GetComponent<BuildingController>();
+
+            if (bc.shelterAmount <= Roster.Count)
+                TeamMorale -= Mathf.Max(Roster.Count - bc.shelterAmount, 0);
+
+            // Execute All Assigned Actions
             foreach (Character character in Roster)
             {
-				if (!character.ChangeHealth(-StarveHealthDecrease * ((foodNeeded-Food)/foodNeeded)) ||
-                    !character.ChangeRelationship(-StarveRelationshipDecrease * ((foodNeeded-Food)/foodNeeded)))
-					toBeRemoved.Add(character);
-			}
-			foreach (Character character in toBeRemoved)
-			{
-				RemoveCharacter(character);
-			}
-            Food = 0;
-        } else {
-            Food -= foodNeeded;
-        }
-
-        BuildingController bc = GetComponent<BuildingController>();
-
-        if (bc.shelterAmount <= Roster.Count)
-            TeamMorale -= Mathf.Max(Roster.Count - bc.shelterAmount, 0);
-
-		// Execute All Assigned Actions
-		foreach (Character character in Roster)
-		{
-			if (character.AssignedAction != null)
-			{
-				character.AssignedAction.Execute(character);
-				character.AssignedAction = null;
-			} else {
-                character.ChangeHealth(RestHealthIncrease);
-                character.ChangeRelationship(RestRelationshipIncrease);
+                if (character.AssignedAction != null)
+                {
+                    character.AssignedAction.Execute(character);
+                    character.AssignedAction = null;
+                }
+                else
+                {
+                    character.ChangeHealth(RestHealthIncrease);
+                    character.ChangeRelationship(RestRelationshipIncrease);
+                }
             }
-		}
-        if (AvailableEvents.Count > 0)
-        {
-			Event e = AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)];
-			e.Chosen();
-			DialogBoxController.ShowBox(e);
-            if (e.isRitual)
-                AvailableEvents.Remove(e);
-        }
-        else
-        {
-            GameOver();
-        }
+            if (AvailableEvents.Count > 0)
+            {
+                Event e = AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)];
+                e.Chosen();
+                DialogBoxController.ShowBox(e);
+                if (e.isRitual)
+                    AvailableEvents.Remove(e);
+            }
+            else
+            {
+                GameOver();
+            }
 
-        if(TeamMorale <= 0)
-        { GameOver(); }
-
+            if (TeamMorale <= 0)
+            { GameOver(); }
+        }
 	}
 
 	#region Incrementing and Modifying
@@ -408,5 +416,12 @@ public class GameController : MonoBehaviour
     public void ChangeSupplies(int delta)
     {
         Supplies = Mathf.Max(Supplies + delta, 0);
+    }
+
+    public void RecruitCharacter()
+    {
+        Character newCharacter = AvailableCharacters[Random.Range(0, AvailableCharacters.Count)];
+        AddCharacter(newCharacter);
+        AvailableCharacters.Remove(newCharacter);
     }
 }
