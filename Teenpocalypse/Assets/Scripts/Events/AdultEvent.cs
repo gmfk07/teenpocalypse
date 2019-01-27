@@ -30,7 +30,7 @@ public class AdultEvent : Event
         switch (index)
         {
             case 0:
-                if (gc.TestDefense(1.8f))
+                if (gc.TestDefense(2f))
                 {
                     success = true;
                     gc.TeamMorale = Mathf.Min(gc.TeamMorale + 10, 0);
