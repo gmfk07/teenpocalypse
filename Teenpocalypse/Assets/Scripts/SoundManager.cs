@@ -5,6 +5,7 @@ public class SoundManager : MonoBehaviour
 {
     public AudioSource soundEffectsSource;
     public AudioSource musicSource;
+    public AudioSource campfireSoundSource;
     public static SoundManager instance = null;             
 
     void Awake()
