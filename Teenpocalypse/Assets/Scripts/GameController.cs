@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     public float DefenseMultiplier = 1;
 
     public List<Character> AvailableCharacters;
+    private List<Character> WillAddListCharacters = new List<Character>();
 
     public List<Character> OnDefense = new List<Character>();
 
@@ -188,6 +189,11 @@ public class GameController : MonoBehaviour
             if (character.RestingWeeks > 0)
                 character.RestingWeeks--;
         }
+        foreach (Character character in WillAddListCharacters)
+        {
+            AddCharacter(character);
+        }
+        WillAddListCharacters.Clear();
     }
 
 	void LoadActions()
@@ -436,7 +442,7 @@ public class GameController : MonoBehaviour
     public void RecruitCharacter()
     {
         Character newCharacter = AvailableCharacters[Random.Range(0, AvailableCharacters.Count)];
-        AddCharacter(newCharacter);
+        WillAddListCharacters.Add(newCharacter);
         AvailableCharacters.Remove(newCharacter);
     }
 }

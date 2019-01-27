@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d75bafb142c66484d88b92b16e918924, type: 3}
-  m_Name: Loveable Jock
+  m_Name: Christian
   m_EditorClassIdentifier: 
-  Name: Jonathan
-  Bio: Angela likes pineapples
-  WorkMultiplier: 0.6
-  MaxHealth: 90
-  InitialRelationship: 35
-  Health: 90
-  Relationship: 35
+  Name: Roy
+  Bio: Kelly likes pineapples
+  WorkMultiplier: 1.4000001
+  MaxHealth: 100
+  InitialRelationship: 25
+  Health: 58
+  Relationship: 15
   RestingWeeks: 0
-  Icon: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
+  Icon: {fileID: 0}
   AssignedAction: {fileID: 0}

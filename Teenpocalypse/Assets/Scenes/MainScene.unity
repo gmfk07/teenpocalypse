@@ -4615,6 +4615,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: AllActions.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: AvailableCharacters.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: currentWeek
+      value: 
+      objectReference: {fileID: 1520161235}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: weeksSurvived
+      value: 
+      objectReference: {fileID: 1840185399}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: gameOverBackground
+      value: 
+      objectReference: {fileID: 1778790912}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: AllActions.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: a98e98b6c28ef6a4f92ce206409ef5eb,
+        type: 2}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: AvailableCharacters.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a2133bbe06f5ff43a19766943e3fb39,
+        type: 2}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: AvailableCharacters.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e96ca4178fcb01344b6f5ad78c38f45b,
+        type: 2}
     - target: {fileID: 9035680755774811884, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4670,20 +4713,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: currentWeek
-      value: 
-      objectReference: {fileID: 1520161235}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: weeksSurvived
-      value: 
-      objectReference: {fileID: 1840185399}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: gameOverBackground
-      value: 
-      objectReference: {fileID: 1778790912}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6855f9805a4a35e46844b69653f4d67d, type: 3}

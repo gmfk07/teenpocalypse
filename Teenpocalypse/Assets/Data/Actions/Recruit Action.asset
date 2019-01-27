@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50c213cd1509d6749a3cfd1e4ddb40b9, type: 3}
-  m_Name: Guard Action
+  m_Script: {fileID: 11500000, guid: 220910b2b90e97547bf4a4966f066da9, type: 3}
+  m_Name: Recruit Action
   m_EditorClassIdentifier: 
-  Name: Guard
-  Description: Guard the settlement.
+  Name: Recruit
+  Description: Find New Recruits!
   MinWeek: 0
   InitialSlots: 1
   AssignedCharacters: []
-  Slots: 1
+  Slots: 0
