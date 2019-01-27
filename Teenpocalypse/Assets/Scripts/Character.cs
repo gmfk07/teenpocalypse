@@ -4,7 +4,6 @@ using System.Collections;
 [CreateAssetMenu(menuName = "Character")]
 public class Character : ScriptableObject
 {
-    NameGenerator newName = new NameGenerator();
 	public string Name = "Bill";
 	[TextArea(4, 20)]
 	public string Bio = "Bill likes pineapples";
@@ -24,6 +23,7 @@ public class Character : ScriptableObject
 	
 	public void Init()
 	{
+        NameGenerator newName = new NameGenerator();
         Name = newName.GetNewName();
         Bio = newName.GetNewName() + " likes pineapples";
         Health = MaxHealth;
