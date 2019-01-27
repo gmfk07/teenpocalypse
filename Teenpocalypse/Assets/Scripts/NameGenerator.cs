@@ -5,7 +5,7 @@ using System.Net;
 using System;
 using System.IO;
 
-public class NameGenerator : MonoBehaviour
+public class NameGenerator
 {
     public string charName;
 
@@ -30,16 +30,8 @@ public class NameGenerator : MonoBehaviour
         return newName;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    public NameGenerator()
+	{
         charName = GetNewName();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -78,12 +78,11 @@ public class GameController : MonoBehaviour
 		foreach (Action action in AllActions) {
 			action.Init();
 		}
-		foreach (Character character in StartingRoster)
-		{
+		foreach (Character character in StartingRoster) {
 			AddCharacter(character);
 		}
 		LoadActions();
-        LoadEvents();
+		LoadEvents();
 		m_HitObjects = new List<RaycastResult>();
 	}
 
@@ -138,7 +137,7 @@ public class GameController : MonoBehaviour
 		// Adding new actions
 		foreach (Action action in AllActions)
 		{
-			if (action.MinWeek >= Week)
+			if (action.MinWeek <= Week)
 			{
 				if (!AvailableActions.Contains(action))
 					AvailableActions.Add(action);
