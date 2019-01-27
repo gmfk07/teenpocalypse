@@ -56,6 +56,7 @@ public class GameController : MonoBehaviour
 
 	public Character SelectedCharacter;
 	public Action SelectedAction;
+	private GameObject selectedActionPanel;
 
     public DialogBoxController DialogBoxController;
 
@@ -96,6 +97,10 @@ public class GameController : MonoBehaviour
 		if (Input.GetMouseButtonUp(0))
 		{
 			OnMouseReleased();
+		}
+		if (selectedActionPanel != null)
+		{
+			selectedActionPanel.transform.position = Input.mousePosition;
 		}
 	}
 
@@ -446,11 +451,18 @@ public class GameController : MonoBehaviour
 		if (actionPanel)
 		{
 			if (!actionPanel.action.SlotsFilled)
+			{
 				SelectedAction = actionPanel.action;
+				selectedActionPanel = Instantiate(actionPanel.gameObject, actionPanel.transform.parent);
+			}
 		}
 	}
 	private void OnMouseReleased()
 	{
+		if (selectedActionPanel != null)
+		{
+			Destroy(selectedActionPanel);
+		}
 		List<GameObject> clickedOnObjects = ClickAndGetResults();
 
 		CharacterPanel characterPanel = FindFirstOf<CharacterPanel>(clickedOnObjects);

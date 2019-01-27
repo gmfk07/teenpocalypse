@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0df12b15954b1784f9762757fee28ad1, type: 3}
+  m_Name: Adult Event
+  m_EditorClassIdentifier: 
+  Name: Adult Raid
+  Description: A group of mindless, overexcited adults find your camp. Jittering madly
+    and holding rocks, they demand tribute from the village.
+  MinWeek: 5
+  Choices:
+  - Fight them!
+  - Give them what they want.
+  HasConsequencesText: 1
+  UseDynamicDescription: 0
+  isRitual: 0

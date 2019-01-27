@@ -9,31 +9,47 @@ public class AdultEvent : Event
     private Character target;
     private int loss;
 
+    
+
+    public override List<string> GetChoices()
+    {
+        GameController gc = GameController.Instance;
+
+        List<string> result = new List<string>();
+        result.Add("Fight them!");
+
+        if (gc.Supplies >= 20)
+            result.Add("Give them what they want.");
+        return result;
+    }
+
     public override void Execute(int index)
     {
         GameController gc = GameController.Instance;
+
         switch (index)
         {
             case 0:
-                if (gc.TestDefense(2))
+                if (gc.TestDefense(1.8f))
                 {
                     success = true;
-				}
+                    gc.TeamMorale = Mathf.Min(gc.TeamMorale + 10, 0);
+                }
                 else
                 {
                     success = false;
-                    gc.Food = 0;
                     if (gc.OnDefense.Count > 0)
                         target = gc.OnDefense[Random.Range(0, gc.OnDefense.Count)];
                     else
                         target = gc.Roster[Random.Range(0, gc.Roster.Count)];
-					target.ChangeHealthWithDeletion(-20);
+					target.ChangeHealthWithDeletion(-45);
+                    gc.TeamMorale = Mathf.Max(gc.TeamMorale + 15, Constants.MAX_VALUE);
                 }
                 break;
 
             case 1:
-                loss = gc.Food - (gc.Food / 2);
-                gc.Food = gc.Food / 2;
+                gc.ChangeSupplies(-20);
+                gc.TeamMorale = Mathf.Min(gc.TeamMorale - 10, 0);
                 break;
         }
     }
@@ -44,14 +60,15 @@ public class AdultEvent : Event
 		{
 			case 0:
                 if (success)
-                    return "The bear was driven away! Three cheers for our brave fighters!\nMorale: +10";
+                    return "Adult bodies litter the ground. The village cheers!\n\nMorale: +10";
                 else
-                    return "We failed in our defense. The bear got into our food supply, and " + target.Name + " was hurt.\n" 
-						+ target.Name + "'s Health: -5" + "\nFood: -" + loss;
+                    return "They tore us apart. " + target.Name + " got badly injured, though no supply was taken. The village"
+                        + " rallies around their brave fighting. Never again!"
+						+ target.Name + "'s Health: -45" + "\nMorale: +15";
 
 			case 1:
-				return "The bear is given a wide berth, as they start to eat the food supply. Not much is left.\n"
-					+ "Food: -" + loss + "\nMorale: -5";
+				return "We give the adults what they want. They jeer as they trample all over our supply. The villagers consider you "
+                    + "cowardly. Supply: -20, Morale: -10";
 		}
 		return "";
 	}
