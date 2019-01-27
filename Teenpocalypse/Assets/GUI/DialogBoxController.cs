@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DialogBoxController : MonoBehaviour
 {
-    private int width = 200;
-    private int height = 225;
+    private int width = 260;
+    private int height = 265;
 	public bool IsShowing { get { return show; } }
     private bool show = false;
     private Rect windowRect;
@@ -32,13 +32,14 @@ public class DialogBoxController : MonoBehaviour
     void DialogWindow(int windowID)
     {
         GUI.Label(new Rect(5, 25, width - 8, 250), currentEvent.GetDescription());
+		currentEvent.Choices = currentEvent.GetChoices();
 
         for (int i=0; i<currentEvent.Choices.Count; i++)
         {
             if (GUI.Button(new Rect(5, 150 + 25*i, width - 10, 20), currentEvent.GetChoices()[i]))
             {
                 currentEvent.Execute(i);
-				choiceChosen = 1;
+				choiceChosen = i;
 				if (currentEvent.HasConsequencesText)
 					showingConsequences = true;
 				else

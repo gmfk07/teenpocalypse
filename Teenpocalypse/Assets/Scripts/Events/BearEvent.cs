@@ -18,8 +18,8 @@ public class BearEvent : Event
                 if (gc.TestDefense(1))
                 {
                     success = true;
-
-                }
+					target.ChangeHealthWithDeletion(-5);
+				}
                 else
                 {
                     success = false;
@@ -29,6 +29,7 @@ public class BearEvent : Event
                         target = gc.OnDefense[Random.Range(0, gc.OnDefense.Count)];
                     else
                         target = gc.Roster[Random.Range(0, gc.Roster.Count)];
+					target.ChangeHealthWithDeletion(-20);
                 }
                 break;
 
@@ -47,10 +48,12 @@ public class BearEvent : Event
                 if (success)
                     return "The bear was driven away! Three cheers for our brave fighters!\nMorale: +10";
                 else
-                    return "We failed in our defense. The bear got into our food supply, and " + target.Name + " was hurt.\nFood: -" + loss;
+                    return "We failed in our defense. The bear got into our food supply, and " + target.Name + " was hurt.\n" 
+						+ target.Name + "'s Health: -5" + "Food: -" + loss;
 
 			case 1:
-				return "The bear is given a wide berth, as they start to eat the food supply. Not much is left.\nFood: -" + loss + "\nMorale: -5";
+				return "The bear is given a wide berth, as they start to eat the food supply. Not much is left.\n"
+					+ target.Name + "'s Health: -20" + "Food: -" + loss + "\nMorale: -5";
 		}
 		return "";
 	}

@@ -20,20 +20,29 @@ public class CharacterPanelController : MonoBehaviour
 		CreateCharacterPanels();
     }
 
-	void CreateCharacterPanels()
+	private void Update()
 	{
 		int i = 0;
 		int pad = 155;
-		foreach (Character character in GameController.Instance.Roster)
+		foreach (CharacterPanel panel in characterPanels)
 		{
 			Vector3 offset = new Vector3(pad * i, 63, 0);
 			offset.x -= GameController.Instance.Roster.Count / 2 * pad;
-			GameObject panel = Instantiate(characterPanelPrefab, transform.position + offset, Quaternion.identity, transform);
+			Vector3 newPosition = transform.position + offset;
+			panel.transform.position = newPosition;
+			++i;
+		}
+	}
+
+	void CreateCharacterPanels()
+	{
+		foreach (Character character in GameController.Instance.Roster)
+		{
+			GameObject panel = Instantiate(characterPanelPrefab, transform.position, Quaternion.identity, transform);
 			CharacterPanel characterPanel = panel.GetComponent<CharacterPanel>();
 			characterPanel.character = character;
 			characterPanel.LoadCharacterData();
 			characterPanels.Add(characterPanel);
-			++i;
 		}
 	}
 

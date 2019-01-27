@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using System;
 using TMPro; //For game over text
 using Random = UnityEngine.Random; //For randomizing game over screen image.
@@ -289,6 +290,11 @@ public class GameController : MonoBehaviour
         gameOverImage.sprite = GameOverSprites[Random.Range(0, GameOverSprites.Length)];
     }
 
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    }
 
     //Returns true if morale test succeeds, false otherwise
     public bool TestMorale(int successModifier)
