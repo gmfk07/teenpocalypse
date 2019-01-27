@@ -282,7 +282,7 @@ public class GameController : MonoBehaviour
     //Returns true if morale test succeeds, false otherwise
     public bool TestMorale(int successModifier)
     {
-        if (Random.Range(0, 100 - successModifier) <= TeamMorale)
+        if (UnityEngine.Random.Range(0, 100 - successModifier) <= TeamMorale)
             return true;
         return false;
     }
