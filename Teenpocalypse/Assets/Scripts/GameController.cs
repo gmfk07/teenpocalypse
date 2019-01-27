@@ -63,6 +63,8 @@ public class GameController : MonoBehaviour
 
     public TextMeshProUGUI currentWeek;
 
+    public GameObject gameplayScreen;
+
     //Game Over objects
     public TextMeshProUGUI weeksSurvived;
     public GameObject playAgainButton;
@@ -104,7 +106,7 @@ public class GameController : MonoBehaviour
 		{
 			selectedActionPanel.transform.position = Input.mousePosition;
 		}
-        if (Roster.Count == 0)
+        if (Roster.Count == 0 && !gameOver)
         {
             GameOver();
         }
@@ -405,7 +407,6 @@ public class GameController : MonoBehaviour
 
     public void HideControls()
     {
-        GameObject gameplayScreen = GameObject.Find("GameplayScreen");
         DialogBoxController eventGUI = GameObject.Find("GameController").GetComponent<DialogBoxController>();
         BuildingController[] buildGUIs = GameObject.Find("GameController").GetComponents<BuildingController>();
         eventGUI.enabled = false;

@@ -3615,6 +3615,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1979728825 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 407032834064948053, guid: 85d1966dcbb942f4eb88cb290099c5de,
+    type: 3}
+  m_PrefabInstance: {fileID: 407032834006058039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2012606223
 GameObject:
   m_ObjectHideFlags: 0
@@ -3881,11 +3887,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
-      propertyPath: AvailableCharacters.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
       propertyPath: StartingRoster.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -3894,6 +3895,11 @@ PrefabInstance:
       propertyPath: dayNightFilter
       value: 
       objectReference: {fileID: 519420030}
+    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
+        type: 3}
+      propertyPath: nextWeekButton
+      value: 
+      objectReference: {fileID: 2133359207}
     - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
       propertyPath: currentWeek
@@ -3916,15 +3922,14 @@ PrefabInstance:
       objectReference: {fileID: 1778790912}
     - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
-      propertyPath: AvailableCharacters.Array.data[4]
+      propertyPath: gameplayScreen
       value: 
-      objectReference: {fileID: 11400000, guid: f3d63920fdb9329499cfab2cc8c021ad,
-        type: 2}
+      objectReference: {fileID: 1979728825}
     - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
       propertyPath: StartingRoster.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: fc6af6b94c9afbd469e3d452c6a329df,
+      objectReference: {fileID: 11400000, guid: 2b91a73f151db0a498f8ae6664eae861,
         type: 2}
     - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
@@ -3936,18 +3941,8 @@ PrefabInstance:
         type: 3}
       propertyPath: StartingRoster.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 2b91a73f151db0a498f8ae6664eae861,
+      objectReference: {fileID: 11400000, guid: fc6af6b94c9afbd469e3d452c6a329df,
         type: 2}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: Food
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 9035680755774811887, guid: 6855f9805a4a35e46844b69653f4d67d,
-        type: 3}
-      propertyPath: nextWeekButton
-      value: 
-      objectReference: {fileID: 2133359207}
     - target: {fileID: 9035680755774811884, guid: 6855f9805a4a35e46844b69653f4d67d,
         type: 3}
       propertyPath: m_LocalPosition.x
