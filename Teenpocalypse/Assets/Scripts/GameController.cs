@@ -145,7 +145,9 @@ public class GameController : MonoBehaviour
 		}
         if (AvailableEvents.Count > 0)
         {
-			DialogBoxController.ShowBox(AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)]);
+			Event e = AvailableEvents[UnityEngine.Random.Range(0, AvailableEvents.Count)];
+			e.Chosen();
+			DialogBoxController.ShowBox();
         }
         else
         {

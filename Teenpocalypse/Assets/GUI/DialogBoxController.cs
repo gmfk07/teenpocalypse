@@ -31,11 +31,11 @@ public class DialogBoxController : MonoBehaviour
 
     void DialogWindow(int windowID)
     {
-        GUI.Label(new Rect(5, 25, width - 8, 250), currentEvent.Description);
+        GUI.Label(new Rect(5, 25, width - 8, 250), currentEvent.GetDescription());
 
         for (int i=0; i<currentEvent.Choices.Count; i++)
         {
-            if (GUI.Button(new Rect(5, 150 + 25*i, width - 10, 20), currentEvent.Choices[i]))
+            if (GUI.Button(new Rect(5, 150 + 25*i, width - 10, 20), currentEvent.GetChoices()[i]))
             {
                 currentEvent.Execute(i);
 				choiceChosen = 1;
