@@ -16,7 +16,7 @@ public class NameGenerator : MonoBehaviour
         public string surname;
     }
 
-    private string GetPlayerName()
+    public string GetNewName()
     {
         string newName = "";
         CharacterDetails newCharacter = new CharacterDetails();
@@ -24,17 +24,17 @@ public class NameGenerator : MonoBehaviour
         HttpWebResponse response = (HttpWebResponse)request.GetResponse();
         StreamReader reader = new StreamReader(response.GetResponseStream());
         string jsonResponse = reader.ReadToEnd();
-        Debug.Log(jsonResponse);
+        //Debug.Log(jsonResponse);
         newCharacter = JsonUtility.FromJson<CharacterDetails>(jsonResponse);
         newName = newCharacter.name + " " + newCharacter.surname;
-        Debug.Log("Name is " + newName);
+        //Debug.Log("Name is " + newName);
         return newName;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        charName = GetPlayerName();
+        charName = GetNewName();
 
     }
 
