@@ -135,7 +135,8 @@ public class GameController : MonoBehaviour
     public void DialogBoxGone() { dialogBoxGone = true; }
 
     private IEnumerator TheTimesTheyAreAChangin() {
-        SoundManager.instance.PlaySingle(clockTickSound);
+        SoundManager.instance.musicSource.Pause();
+        SoundManager.instance.PlaySingle(timePassingSound);
 
         float randN = Random.Range(0f, 1f);
 
@@ -178,7 +179,11 @@ public class GameController : MonoBehaviour
                timeLeft < 7f / numEvents * 2.8f  && eventsLeft == 3) {
                 PickEvent(weekEvents);
                 eventsLeft--;
+                SoundManager.instance.PauseSFX();
+                SoundManager.instance.musicSource.UnPause();
                 yield return new WaitUntil(() => dialogBoxGone);
+                SoundManager.instance.ResumeSFX();
+                SoundManager.instance.musicSource.Pause();
                 dialogBoxGone = false;
             }
 
@@ -190,6 +195,8 @@ public class GameController : MonoBehaviour
         currentWeek.text = "Week " + Week;
 
         if(TeamMorale <= 0) { GameOver(); }
+
+        SoundManager.instance.musicSource.UnPause();
     }
 
     private void PickEvent(List<Event> weekEvents) {
