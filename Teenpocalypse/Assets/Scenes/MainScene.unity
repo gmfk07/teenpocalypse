@@ -838,7 +838,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 9035680755337805230}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1680771898}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d557b9d290abbea42b065189b34e0322, type: 3}
@@ -1159,6 +1159,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActionPanel: {fileID: 2207934324645739966, guid: 9dc065dcd009f964785057192bbdcd2d,
     type: 3}
+--- !u!1 &1680771898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9035680755774811886, guid: 6855f9805a4a35e46844b69653f4d67d,
+    type: 3}
+  m_PrefabInstance: {fileID: 9035680755337805230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1680771901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680771898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a9e304ae359ab478190337a1babb2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shelterAmount: 2
+  farmAmount: 0
+  armoryAmount: 0
+  width: 200
 --- !u!1 &1698169913
 GameObject:
   m_ObjectHideFlags: 0
