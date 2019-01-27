@@ -282,6 +282,7 @@ public class GameController : MonoBehaviour
         gameOverSpriteRenderer.sprite = GetRandomGameOverMessage();
 
         Debug.Log("Activate game over background");
+        weeksSurvived.color = new Color(weeksSurvived.color.r, weeksSurvived.color.g, weeksSurvived.color.b, 1f);
         gameOverBackground.SetActive(true);
         StartCoroutine(FadeIn(gameOverBackground));
         SoundManager.instance.PlaySingle(gameOverSound);
@@ -326,13 +327,15 @@ public class GameController : MonoBehaviour
 
     private static IEnumerator FadeIn(GameObject newObj)
     {
-        const float time = 1;
+        const float time = 4;
         float timeLeft = time;
         var sprite = newObj?.GetComponent<SpriteRenderer>();
+        var text = newObj?.GetComponent<TextMeshProUGUI>();
 
         while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
+            if (text != null) text.color = Color.Lerp(Color.clear, Color.white, (time - timeLeft) / time);
             if (sprite != null) sprite.color = Color.Lerp(Color.clear, Color.white, (time - timeLeft) / time);
             yield return null;
         }
