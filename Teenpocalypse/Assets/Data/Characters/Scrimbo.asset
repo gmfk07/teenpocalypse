@@ -21,6 +21,6 @@ MonoBehaviour:
   Health: 0
   Relationship: 60
   RestingWeeks: 0
-  GenerateName: 0
+  GenerateName: 1
   Icon: {fileID: 2800000, guid: 3da6ba6eef64dc24da828dba8a808f98, type: 3}
   AssignedAction: {fileID: 0}

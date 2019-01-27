@@ -11,7 +11,7 @@ public class GatherFoodAction : Action
 
 	public override void Execute(Character actionTaker)
 	{
-		GameController.Instance.Food += (int)Mathf.Round(8 * actionTaker.WorkMultiplier);
+		GameController.Instance.Food += (int)Mathf.Round(12 * actionTaker.WorkMultiplier);
         if (Random.Range(0, 100) < 50)
             actionTaker.Health -= 3;
     }
