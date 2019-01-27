@@ -21,9 +21,7 @@ public class SoundManager : MonoBehaviour
 
 
     public void PlaySingle(AudioClip clip)
-    {
-        Debug.Log("PlaySingle " + clip.name);
-        
+    {        
         soundEffectsSource.clip = clip;
 
         soundEffectsSource.Play();
