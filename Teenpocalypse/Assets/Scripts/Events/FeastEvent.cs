@@ -7,15 +7,16 @@ public class FeastEvent : Event
 {
     public override void Execute(int index)
     {
+        GameController gc = GameController.Instance;
         switch (index)
         {
             case 0:
-                GameController.Instance.Food = Mathf.Max(0, GameController.Instance.Food - GameController.Instance.Roster.Count*GameController.Instance.FoodPerPerson);
-                GameController.Instance.TeamMorale = Mathf.Min(Constants.MAX_VALUE, GameController.Instance.TeamMorale + 10);
+                gc.ChangeFood(gc.Food - gc.Roster.Count*gc.FoodPerPerson);
+                gc.TeamMorale = Mathf.Min(Constants.MAX_VALUE, gc.TeamMorale + 10);
                 break;
 
             case 1:
-                GameController.Instance.TeamMorale = Mathf.Max(0, GameController.Instance.TeamMorale - 5);
+                gc.TeamMorale = Mathf.Max(0, gc.TeamMorale - 5);
                 break;
         }
     }
