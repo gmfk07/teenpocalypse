@@ -163,6 +163,7 @@ public class GameController : MonoBehaviour
 	{
 		++Week;
         currentWeek.text = "Week " + Week;
+        CharactersOnDefense = 0;
         LoadActions();
         LoadEvents();
 	}
