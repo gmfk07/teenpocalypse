@@ -566,7 +566,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -646,7 +646,7 @@ MonoBehaviour:
   Roster: []
   SelectedCharacter: {fileID: 0}
   SelectedAction: {fileID: 0}
-  DialogBoxController: {fileID: 712266563}
+  dialogBoxController: {fileID: 712266563}
   weeksSurvived: {fileID: 1840185399}
   gameOverBackground: {fileID: 1698169913}
   GameOverSprites:
@@ -1233,7 +1233,7 @@ MonoBehaviour:
     lineCount: 5
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
