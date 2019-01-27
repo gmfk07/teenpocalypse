@@ -72,6 +72,8 @@ public class GameController : MonoBehaviour
     public AudioClip clockTickSound;
     public AudioClip gameOverSound;
     public AudioClip newActionAvailableSound;
+    public AudioClip buildingSound;
+    public AudioClip timePassingSound;
 
     List<RaycastResult> m_HitObjects;
 
