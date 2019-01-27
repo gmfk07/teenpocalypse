@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9035680755774811887}
   - component: {fileID: 9035680755774811885}
   - component: {fileID: 1680771901}
+  - component: {fileID: 8937039468972693913}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -65,6 +66,7 @@ MonoBehaviour:
   AllEvents:
   - {fileID: 11400000, guid: 855c13b344c80a849a8f4b3a63ab20e1, type: 2}
   - {fileID: 11400000, guid: aa6f9fce767439548ad2b1e62b69f47f, type: 2}
+  - {fileID: 11400000, guid: a709c8d4a3a1f654fb63d9b96c7b0e06, type: 2}
   AvailableEvents: []
   StartingRoster:
   - {fileID: 11400000, guid: 00207cd1054bc53469b1eda1013d7884, type: 2}
@@ -104,6 +106,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentEvent: {fileID: 0}
 --- !u!114 &1680771901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035680755774811886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a9e304ae359ab478190337a1babb2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shelterAmount: 2
+  farmAmount: 0
+  armoryAmount: 0
+  width: 200
+--- !u!114 &8937039468972693913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
